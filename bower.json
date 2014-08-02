@@ -1,0 +1,40 @@
+{
+  "name": "holon",
+  "version": "0.0.2",
+  "description": "Leight-weight DSL-free dual-side composable reactive components",
+  "main": "index.js",
+  "homepage": "https://github.com/coding-amigos/holon",
+  "keywords": [
+    "dual-side",
+    "composable",
+    "reactive",
+    "component",
+    "components",
+    "template",
+    "templating",
+    "module",
+    "dual",
+    "side",
+    "partial",
+    "partials"
+  ],
+  "authors": [
+    "Alexander Praetorius <dev@serapath.de>"
+  ],
+  "moduleType": [
+    "amd",
+    "globals",
+    "node"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "license": "CC0",
+  "dependencies": {
+    "plates": "^0.4.9"
+  }
+}

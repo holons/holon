@@ -1,0 +1,36 @@
+{
+  "name": "holon",
+  "version": "0.0.2",
+  "description": "Leight-weight DSL-free dual-side composable reactive components",
+  "main": "index.js",
+  "homepage": "https://github.com/coding-amigos/holon",
+  "keywords": [
+    "dual-side",
+    "composable",
+    "reactive",
+    "component",
+    "components",
+    "template",
+    "templating",
+    "module",
+    "dual",
+    "side",
+    "partial",
+    "partials"
+  ],
+  "author": "serapath <dev@serapath.de> (http://www.github.com/serapath)",
+  "scripts": {
+    "test": "testem"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/coding-amigos/holon.git"
+  },
+  "bugs": {
+    "url": "https://github.com/coding-amigos/holon/issues"
+  },
+  "license": "CC0",
+  "dependencies": {
+    "plates": "^0.4.9"
+  }
+}

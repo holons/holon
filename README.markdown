@@ -42,6 +42,11 @@ jobs
 - https://github.com/airportyh/testem
 
 
+contributors
+=======
+* [Alexander Praetorius](https://github.com/serapath)
+
+
 license
 =======
 

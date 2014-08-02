@@ -1,6 +1,6 @@
 {
   "name": "holon",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Leight-weight DSL-free dual-side composable reactive components",
   "main": "index.js",
   "homepage": "https://github.com/coding-amigos/holon",
@@ -35,6 +35,6 @@
   ],
   "license": "CC0",
   "dependencies": {
-    "plates": "^0.4.9"
+    "plates": "https://github.com/flatiron/plates.git#master"
   }
 }

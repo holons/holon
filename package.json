@@ -1,6 +1,6 @@
 {
   "name": "holon",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Leight-weight DSL-free dual-side composable reactive components",
   "main": "index.js",
   "homepage": "https://github.com/coding-amigos/holon",

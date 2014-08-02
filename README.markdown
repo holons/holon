@@ -1,56 +1,123 @@
 holon
 =====
-
 Leight-weight DSL-free dual-side composable reactive components
+![holon](https://raw.github.com/coding-amigos/holon/master/holon.png)
 
-![holon](https://raw.github.com/coding-amigos/holon/master/SOURCE/media/logo.png)
 
-install
+demo
 =======
+__☠☠☠ section is under construction ☠☠☠__
 
-With [npm](http://npmjs.org) do:
+
+usage
+=======
+__☠☠☠ section is under construction ☠☠☠__
+
+install with [npm](http://npmjs.org) do:
 
 ```
 npm install holon
 ```
-
-With [bower](http://bower.io) do:
+install with [bower](http://bower.io) do:
 
 ```
 bower install holon
 ```
+install with [git](http://git-scm.com/) do:
 
-example
-=======
+```
+git clone https://github.com/coding-amigos/holon.git
+```
 
-...
 
 api
 =======
+__☠☠☠ section is under construction ☠☠☠__
+
+
+authors
+=======
+* [serapath](https://github.com/serapath "Alexander Praetorius")
 
 
 jobs
 =======
-@TODO: Publish it as a component
-- http://modernweb.com/2014/02/17/introduction-to-the-component-javascript-package-manager/
-- https://github.com/component/component/wiki/Components
-@TODO: Create a Github Page
-- https://github.com/jekyll/jekyll
-- https://help.github.com/categories/20/articles
-@TODO: Include Testing via "Specification Driven Development" using gherkin dsl & TESTEM
-- https://github.com/cucumber/cucumber/wiki/Gherkin
-- https://github.com/airportyh/testem
+There is more jobs in the source code marked with `// @TODO: <job description>` and eventually some jobs might be listed under the [holon issues](https://github.com/coding-amigos/holon/issues "holon - open issues") page.
+* __@TODO:__ Publish it as a component
+  * http://modernweb.com/2014/02/17/introduction-to-the-component-javascript-package-manager/
+  * https://github.com/component/component/wiki/Components
+* __@TODO:__ Create a Github Page
+  * https://github.com/jekyll/jekyll
+  * https://help.github.com/categories/20/articles
+* __@TODO:__ Include Testing via "Specification Driven Development" using gherkin dsl & TESTEM
+  * https://github.com/cucumber/cucumber/wiki/Gherkin
+  * https://github.com/airportyh/testem
 
 
-contributors
+contribute
 =======
-* [Alexander Praetorius](https://github.com/serapath)
+### PREPARE SYSTEM
+  * install [git](http://git-scm.com "git") if it is not yet installed on your system
+  * install [node](http://nodejs.org "nodejs") if it is not yet installed on your system
+  * open a terminal on your system and navigate to your favourite workspace folder
+    * _(you might need to prefix some of the following commands with `sudo` to make them work)_
+
+### START PREPARING HOLON PROJECT
+* `git clone https://github.com/coding-amigos/holon.git`
+* `npm install -g bower bower-installer stylus nib jeet rupture`
+* `npm install && bower install`
+* `npm update`
+* `stylus -u jeet -u nib -rupture -w holon.styl`
+* load main HTML project file by opening and pointing your browser to:
+  * a server that serves the `./DEMO/dev.html` file _(e.g. localhost:3000/DEMO/dev.html)-
+  * or doubleclick `./DEMO/dev.html` file to open it directly in your browser
+    * __HINT:__ this only works with CORS disabled. In order to do so:
+      * mac osx `open -a Google\ Chrome --args --disable-web-security`
+      * linux `google-chrome --disable-web-security`
+      * windows `chrome.exe --disable-web-security`
+
+__... HAPPY CODING :-)__
+
+
+repository
+==========
+1. `./`
+  * Contains meta data about this component
+2. `./DEMO`
+  * Contains a file that demonstrate how to use this component in your project
+3. `./DEPS`
+  * Contains all dependencies used by this component, but not yet published to their own repositories
+4. `./RELEASE`
+  * Contains production ready versions of this component which are used by examples in `./DEMO`
+  * __CDNs:__ `v0.0.3@git`, `v0.0.2@npm`, `v0.0.2@bower`
+5. `./SOURCE`
+  * Contains all the source files for this component
+6. `./SOURCE/media`
+  * Contains fonts, images, videos, music and the like, used by this component
+7. `./SPECIFICATION`
+  * Contains the vision, roadmap, open jobs and tests for completed jobs regarding this component
+8. `./WORKBENCH`
+  * Contains some experimental stuff for inspiration to "spike" the use of certain technologies to develop this component further
 
 
 license
 =======
+<p xmlns:dct="http://purl.org/dc/terms/" xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+  <a rel="license"
+     href="http://creativecommons.org/publicdomain/zero/1.0/">
+    <img src="https://raw.github.com/coding-amigos/holon/master/cc0.png" style="border-style: none;" alt="CC0 1.0 Universal" />
+  </a>
+  <br />
+  To the extent possible under law,
+  <a rel="dct:publisher"
+     href="http://www.serapath.de">
+    <span property="dct:title">Alexander Praetorius</span></a>
+  has waived all copyright and related or neighboring rights to
+  <span property="dct:title">holon</span>.
+This work is published from:
+<span property="vcard:Country" datatype="dct:ISO3166"
+      content="DE" about="http://www.serapath.de">
+  Germany</span>.
+</p>
 
-The ![CC0](https://raw.github.com/coding-amigos/holon/master/cc0.png) [CC0](https://raw.github.com/coding-amigos/holon/master/COPYING.txt Licence applies to everything in this repository
-
-More Information:
-[http://creativecommons.org/publicdomain/zero/1.0/](http://creativecommons.org/publicdomain/zero/1.0/)
+[...more information](https://raw.github.com/coding-amigos/holon/master/COPYING.txt "CC0 1.0 Universal")

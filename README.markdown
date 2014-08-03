@@ -120,4 +120,4 @@ This work is published from:
   Germany</span>.
 </p>
 
-[...more information](https://raw.github.com/coding-amigos/holon/master/COPYING.txt "CC0 1.0 Universal")
+[...more information](https://raw.github.com/coding-amigos/holon/master/LICENSE "CC0 1.0 Universal")

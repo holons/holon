@@ -1,0 +1,85 @@
+{
+  "name": "cityilike-frontend",
+  "version": "0.0.2",
+  "authors": [
+    "Alexander Praetorius <alexander@ikusei.de>"
+  ],
+  "description": "Javascript Frontend Dependencies for CITY iLIKE Project",
+  "main": "rails s",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "cityilike"
+  ],
+  "license": "MIT",
+  "homepage": "http://berlin.cityilike.com",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "bower.json",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bxslider-4": "~4.1.2",
+    "wookmark-jquery": "~1.4.7",
+    "sidr": "~1.2.1"
+  },
+  "install": {
+    "path": {
+      "scss": "app/assets/stylesheets/components/",
+      "css": "app/assets/stylesheets/components/",
+      "js": "app/assets/javascripts/components/",
+      "jpg": "app/assets/images/components/",
+      "png": "app/assets/images/components/",
+      "gif": "app/assets/images/components/",
+      "html": "app/assets/templates/components/"
+    },
+    "sources": {
+      "rainbowunicorn": [
+        "bower_components/rainbowunicorn/RainbowUnicorn.js",
+        "bower_components/rainbowunicorn/RainbowUnicorn.css",
+        "bower_components/rainbowunicorn/RainbowUnicorn.template.html"
+      ],
+      "bxslider-4": [
+        "bower_components/bxslider-4/jquery.bxslider.js",
+        "bower_components/bxslider-4/plugins/jquery.fitvids.js",
+        "bower_components/bxslider-4/jquery.bxslider.css",
+        "bower_components/bxslider-4/images/bx_loader.gif",
+        "bower_components/bxslider-4/images/controls.png"
+      ],
+      "wookmark-jquery": [
+        "bower_components/wookmark-jquery/jquery.wookmark.js",
+        "bower_components/wookmark-jquery/libs/jquery.imagesloaded.js",
+        "bower_components/wookmark-jquery/sample-images/*.jpg"
+      ],
+      "sidr": [
+        "bower_components/sidr/jquery.sidr.min.js",
+        "bower_components/sidr/stylesheets/jquery.sidr.dark.css",
+        "bower_components/sidr/stylesheets/jquery.sidr.light.css"
+      ]
+    },
+    "ignore": [
+      "EVERY matched source ending needs a 'target directory'",
+      "which is given under 'path', but as an alternative:",
+      "the 'path' property in this file can be a string to a",
+      "wildcard target directory, e.g. 'public/'",
+      "but be careful, any content in 'taret directory' is deleted before installation happens",
+      " ----- ",
+      "list modules which should not be installed",
+      "might be modules listed under 'dependencies' in this file,",
+      "or as 'dependencies' of those listed modules",
+      "(can overwrite stuff listed here under 'sources')",
+      "examples could be:",
+      "ember",
+      "jquery",
+      "jQuery",
+      "handlebars",
+      "ember-model",
+      "contentinjector123"
+    ]
+  }
+}

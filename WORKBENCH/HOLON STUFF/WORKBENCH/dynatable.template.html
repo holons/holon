@@ -1,0 +1,659 @@
+
+
+
+<div
+  class="
+    Dynatable
+    Dynatable--VARIANT=default
+    Dynatable--STATE=normal
+    Dynatable--CONTEXT=none
+  "
+  data-url='/v0.0.1/api/dynatable'
+  data-json=""
+  data-schema=""
+>
+  <div
+    class="Dynatable__actionbar"
+  >
+    
+  </div>
+  <div
+    class="Dynatable__headerbar"
+  >
+    
+  </div>
+  <div
+    class="Dynatable__content"
+  >
+    
+  </div>
+</div>
+
+
+/////////////////////// IDEAS
+
+// FLATTEN + UNFLATTEN  Objects
+// -> object leafs
+// -> object branches == sub objects
+// -> arrays == object[0], object[1], ...
+
+// javascript:
+  var normal = { x: 'asdf', y: { z1: 1, z2: 2, z3: 3}, z: [1,2,3,4,5]};
+  var flat   = flatten(x);
+  flat = {
+    'x': 'asdf',
+    'y.z1': 1,
+    'y.z2': 2,
+    'y.z3': 3,
+    'z.0' : 1,
+    'z.1' : 2,
+    'z.2' : 3,
+    'z.3' : 4,
+    'z.4' : 5
+  };
+  var unflat = unflatten(x);
+  unflat = {
+    x: 'asdf',
+    y: { z1: 1, z2: 2, z3: 3},
+    z: { '0': 1, '1': 2, '2': 3, '3': 4, '4': 5}
+  };
+
+  <div data-hello.you.0='test' data-0='asdf'>
+  </div>
+
+<!--
+$('div')[1]
+<div data-hello.you.0=​"test" data-0=​"asdf">​
+  ​</div>​
+$('div')[1].dataset
+DOMStringMap {hello.you.0: "test", 0: "asdf"}
+var x = { hello.you.0: "test", 0: "asdf"};
+SyntaxError: Unexpected token .
+var x = { hello.you.0: "test", "0": "asdf"};
+SyntaxError: Unexpected token .
+var x = { "hello.you.0": "test", "0": "asdf"};
+undefined
+x
+Object {0: "asdf", hello.you.0: "test"}
+x.0
+SyntaxError: Unexpected number
+x[0]
+"asdf"
+for (a in x) console.log(a)
+0 VM1226:2
+hello.you.0 VM1226:2
+undefined
+for (a in x) console.log(x[a])
+asdf VM1227:2
+test VM1227:2
+undefined
+-->
+
+
+<!--::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::-->
+<!--::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::-->
+<!--::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::-->
+<!--::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::-->
+<!--::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::-->
+<!--::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::-->
+<!--
+  CLIENT SIDE USAGE
+-->
+# ArticlesController
+def show
+    @article = {
+        :title => "Hello!",
+        :content => "World!",
+        :tags => [
+            {:name => "tag 1"},
+            {:name => "tag 2"},
+            {:name => "tag 3"},
+            {:name => "tag 4"}
+        ]
+    } # Or an ActiveRecord fetch
+end
+
+
+# views/articles/show.html.erb
+<%= isotope_render_partial('articles/article', :locals => { :item => @article }) %>
+
+
+#Client Side Example:
+# views/articles/show.html.erb
+
+<%= isotope_render_template('articles/article', :id => "article") %>
+
+
+<!--::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::-->
+<!--::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::-->
+<!--::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::-->
+<!--::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::-->
+<!--::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::-->
+<!--::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::-->
+<!--
+  SERVER SIDE USAGE
+-->
+#Server Side Example:
+# ArticlesController
+def show
+    @article = {
+        :title => "Hello!",
+        :content => "World!",
+        :tags => [
+            {:name => "tag 1"},
+            {:name => "tag 2"},
+            {:name => "tag 3"},
+            {:name => "tag 4"}
+        ]
+    } # Or an ActiveRecord fetch
+
+    render :text => isotope_render_partial('articles/article', :locals => { :item => @article })
+end
+
+
+<!--::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::-->
+<!--::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::-->
+<!--::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::-->
+<!--::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::-->
+<!--::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::-->
+<!--::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::-->
+<!--
+  SYNTAX INSPIRATION
+-->
+SYNTAX INSPIRATION
+
+
+<ol id="marx-brothers">
+    <li data-template>{{nickname}} {{name.last}}</li>
+</ol>
+
+
+
+You can reference the object being iterated with {{.}}:
+
+var data = [ 'Leonard Marx', 'Adolph Marx', 'Julius Henry Marx', 'Milton Marx', 'Herbert Marx' ];
+<ol id="marx-brothers">
+    <li data-template>{{.}}</li>
+</ol>
+
+
+
+
+If the JSON data represents an array of arrays (which can not be referenced by field/member name) for example:
+
+var data = [ ['Leonard','Marx'], ['Adolph','Marx'], ['Julius Henry','Marx'], ['Milton','Marx'], ['Herbert','Marx'] ];
+You can reference array elements with the following notation:
+
+<ol id="marx-brothers">
+    <li data-template>{{[0]}} {{[1]}}</li>
+</ol>
+
+
+
+
+
+Using data from associative arrays (objects)
+Normally data being iterated is represented as an array of objects. In some cases however the data is a series of objects in a map:
+
+var data = {
+    'leonard': 'Leonard Marx',
+    'adolph': 'Adolph Marx',
+    'julius': 'Julius Henry Marx',
+    'milton': 'Milton Marx',
+    'herbert': Herbert Marx'
+};
+In this case you can iterate all the elements using the data-from-map attribute where the key name can be accessed with {{key}} and the value object via {{value}}:
+
+<ol id="list">
+    <li data-template data-from-map>{{value}} - {{key | append '@marx.com'}}</li>
+</ol>
+
+
+
+
+
+
+
+///// ESCAPING
+
+Values are escaped by default
+All values are escaped by default. To disable automatic escaping pass in the 'escape': false parameter:
+
+Tempo.prepare('marx-brothers', {'escape': false}).render(data);
+
+
+
+
+// NESTING
+
+Nested data-templates
+Data templates can even be nested within other data templates. Multiple nested templates are supported.
+
+<li data-template>
+    {{nickname}} {{name.last}}
+    <ul>
+        <li data-template-for="solo_endeavours">{{title}}</li>
+    </ul>
+</li>
+
+
+
+
+// RECURSIVE NESTING
+
+You can (recursively) refer to parent objects within a nested template using the _parent variable.
+
+<li data-template-for="solo_endeavours">{{_parent.name.first}} acted in {{title}}</li>
+
+
+
+
+
+
+Nested Templates as Partial Template Files
+Tempo supports separating more complex nested templates in to master and partial template files. Partials templates are loaded on demand from the server and do require you to use the alternative asynchronous pattern:
+
+JavaScript:
+Tempo.prepare('marx-brothers', {}, function(template) {
+   template.render(data);
+});
+Template:
+<li data-template>
+    {{name.first}} {{name.last}}
+    <ol>
+        <li data-template-for="solo_endeavours" data-template-file="partials/movie.html"></li>
+    </ol>
+</li>
+Partial ('partials/movie.html'):
+{{title}}
+
+
+
+
+<div class="Animal Animal--VARIANT=default">
+  
+</div>
+
+
+//// CONDITIONAL TEMPLATES
+
+Conditional Templates
+Tempo provides boolean and value-based conditionals, as well as the ability to define multiple data templates per container (the first matching template wins).
+
+<ul id="marx-brothers3">
+    <li data-template data-if-nickname="Groucho">{{nickname}} (aka {{name.first}}) was grumpy!</li>
+    <li data-template data-if-actor>{{name.first}}, nicknamed '<i>{{nickname}} {{name.last}}</i>' was born on {{born}}</li>
+
+    <!-- Default template -->
+    <li data-template>{{name.first}} {{name.last}} was not in any movies!</li>
+</ul>
+
+
+
+You can define templates based on data member existence as well:
+<li data-template data-has="friend">{{friend}}></li>
+
+
+
+
+
+<!--::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::-->
+<!--::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::-->
+<!--::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::-->
+<!--::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::-->
+<!--::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::-->
+<!--::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::-->
+<!--
+  SYNTAX INSPIRATION - PURE
+-->
+<body>
+  <!-- HTML template -->
+  <ul>
+    <li></li>
+  </ul>
+
+  <script>
+    var data = {
+      animals:[
+        {name:'bird'},
+        {name:'cat'},
+        {name:'dog'},
+        {name:'mouse'}
+      ]
+    };
+
+    //declaration of the actions PURE has to do
+    var directive5 = {
+      // SELECTOR-TEMPLATE (document...x)
+      'li':{
+        // SELECTOR-DATA (data.x)
+        'animal<-animals':{
+          // MAPPING
+          '.':'animal.name'
+        }
+      }
+    };
+
+    // note the use of render instead of autoRender
+    $('ul').render(data, directive5);
+</script>
+</body>
+
+
+
+
+<body>
+
+  <!-- HTML template4 -->
+  <div class="template">
+    Hello <a></a>
+  </div>
+
+  <script>
+    var
+      data4 = {
+        'who':'BeeBole!',
+        site:'http://beebole.com'
+      },
+      directive4 = {
+        // MAPPING
+        // SELECTOR-TEMPLATE (document...x) : SELECTOR-DATA (data.x)
+        'a':'who', //look for the tag 'a' and place the value of the property 'who' in its node value
+
+        // MAPPING
+        // SELECTOR-TEMPLATE (document...x@y) : SELECTOR-DATA (data.x)
+        'a@href':'site' //look for the tag a, and set its attribute 'href' to the value of the property 'site'
+      }
+    ;
+    //note the use of render instead of autoRender and the 2nd parameter with directive
+    $('div.template').render(data4, directive4);
+  </script>
+</body>
+
+
+
+
+<head>
+  <style>
+    .even td { background : #DDD }
+    .odd  td { background : #FFF }
+  </style>
+</head>
+<body>
+  <!-- HTML templateA -->
+  <ul>
+    <li></li>
+  </ul>
+
+  <!-- HTML templateB -->
+  <ol>
+    <!-- Explanation of the classes of the LI:
+      *   "animals" points to an array and will trigger an iteration
+      
+      *   "name" points to the property within the array and will set 
+        the node value of the LI
+     -->
+    <li class="animals name"></li>
+  </ol>
+  <!-- 
+    same example as before but with an attribute assignment
+    note the property@attribute notation
+    'who@value' means place the value of the property who in the value attribute
+  -->
+  Hello <a class="who site@href"></a>
+
+  <!-- HTML templateD -->
+  <table>
+    <tr>
+      <td></td>
+    </tr>
+  </table>
+
+  <script>
+    var directive = {
+    'tr' : { //trigger a loop
+      'animal<-animals' : { // loop on the property animals in the JSON 
+       '@class+':function(arg){ // add(+) the return value of the function to the class
+        var oddEven, firstLast;
+        oddEven = (arg.pos % 2 == 0) ? ' even' : ' odd';
+        firstLast = (arg.pos == 0) ? 
+         ' first' : 
+         (arg.pos == arg.animal.items.length - 1) ? 
+          ' last' : 
+          '';
+        return oddEven + firstLast;
+       },
+       'td':'animal.name'
+       }
+     }
+    };
+
+    // animals is an array and will trigger an iteration
+    var data = {
+      animals:[
+        {name:'bird'},
+        {name:'cat'},
+        {name:'dog'},
+        {name:'mouse'}
+      ]
+    };
+    //example with mootools
+    $(document).getElement('ol').autoRender(data);
+    $('table').render(data, directive);
+
+    // the JSON data we want to render
+    var data2 = {'who':'BeeBole!', site:'http://beebole.com'};
+    $('a').autoRender(data2);
+
+
+    var data3 = {
+      legs:4,
+      animals:[
+        {name:'dog', legs:4},
+        {name:'cat', legs:4},
+        {name:'bird', legs:2},
+        {name:'mouse', legs:4}
+      ]
+    };
+
+    //declaration of the actions PURE has to do
+    var directive3 = {
+      'li':{
+        'animal<-animals':{
+          '.':'animal.name'
+        },
+        sort:function(a, b){
+          return a.name > b.name ? 1 : -1;
+        },
+        filter:function(a){
+          return a.context.legs === a.item.legs;
+        }
+      }
+    };
+
+    // note the use of render instead of autoRender, and the 2nd argument
+    $('ul').render(data3, directive3);
+  </script>
+</body>
+
+<!--::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::-->
+<!--::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::-->
+<!--::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::-->
+<!--::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::-->
+<!--::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::-->
+<!--::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::-->
+<!--
+  SYNTAX INSPIRATION - WELD
+-->
+SYNTAX INSPIRE 2
+
+// TARGET NODE
+// DATA
+// [CONFIG]
+
+
+
+  alias: { 
+    'user_password': false, // causes an item to not get rendered
+
+    'user_email': 'email', // use email instead of user_email in the weld match process
+
+    'user_name'     : function(parent, element, key, value) {
+      // element is a DOM Element which will be searched for the current key
+
+      // use fullName in place of user_name
+      return "fullName"
+    },
+
+    'user_hometown' : function(parent, element, key, value) {
+      // use an element instead of allowing weld to match based on class/id/name
+      return element.getElementById('hometown');
+    },
+
+    'personal_info'  : function(parent, element, key, value) {
+      if (session.authorized() === false) {
+        // The user requesting this template is not authorized to view other users' personal information so remove the personal info display from the page
+        var emailDisplay = element.getElementById('personal_info');
+        emailDisplay.parentNode.removeChild(emailDisplay);
+
+        // and return false, which will stop weld from traversing the current branch (personal_info)
+        return false;
+      }
+    }
+
+  }
+      
+
+
+
+
+
+
+
+
+
+  <ul class='contacts'>
+    <li class='contact'>
+      <span>Hello my name is <span class='firstAndLast'>My Name</span></span>
+      <p class='title'>Leet Developer</p>
+    </li>
+  </ul>
+  <script>
+    // Use .contact as the template and data as the data...
+
+    var 
+
+    var
+      data      = [
+        { name: 'hij1nx',  title: 'code exploder' },
+        { name: 'tmpvar', title: 'code pimp' }
+      ],
+      template  = document.getElementByClassName('contact')[0]
+    ;
+    // Since there is no .name class in the markup, we need to alias name to something that does exist..
+
+    weld(template, data, { alias: { 'name': 'firstAndLast' } });
+  </script>
+
+
+<!--::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::-->
+<!--::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::-->
+<!--::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::-->
+<!--::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::-->
+<!--::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::-->
+<!--::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::-->
+<!--
+  INSERT DATA INTO TEMPLATES - TEMPO
+-->
+
+INSERT DATA INTO TEMPLATES
+
+ATOMIC VALUES
+vs.
+ARRAYS
+vs.
+OBJECTS
+
+
+A.
+template.render()
+The Tempo.prepare() function returns an instance of a template ready for rendering. Once the JSON data is available, run the render(data) function to add the data to the page.
+
+data
+The JSON data to be rendered. You'll first need to perform an AJAX call to the JSON data source (see below).
+
+Tempo.prepare( element ).render( data );
+Tempo.prepare('marx-brothers').render(data);
+
+
+B.
+template.append()
+Renderer methods all return an instance of the renderer (a la fluent) so you can chain calls to it. The append(data) function will render the data you pass in and append it to the container.
+
+data
+The JSON data to append.
+
+Tempo.prepare('marx-brothers').render( data ).append( more_brothers );
+
+
+C.
+template.prepend()
+The prepend(data) function will render the data you pass in and insert it before others in the container.
+
+data
+The JSON data to prepend.
+
+Tempo.prepare('marx-brothers').render( data ).prepend( brothers_we_didnt_know_about );
+
+D.
+template.clear()
+The clear() function will empty the container, allowing you to render the data again.
+
+Tempo.prepare('marx-brothers').render( data ).clear();
+
+
+
+
+// ERROR HANDLING
+
+template.errors(errorHandler)
+Tempo will attempt to deal with errors and failures silently but you can pass in your own handler for exceptions:
+
+errorHandler
+A function which will be called with the error object from the try/catch block.
+
+Tempo.prepare('list').errors(function (err) {
+    console.log('Whoa! something happened!');
+    console.log(err);
+}).render(data);
+
+
+
+
+/// OTHERS
+
+template.into(container)
+The into(element) function will allow you to render the original template to one or more different containers specified. The method will return a new template on which you can call the other template methods such as render() or append().
+
+container
+The container to render the template to.
+
+Render to different container:
+Tempo.prepare('marx-brothers').into('alternative-container').render( data );
+Reuse template for multiple different containers:
+var template = Tempo.prepare('marx-brothers');
+template.into('alternative-container').render( data_1 );
+template.into('yet-another-alternative-container').render( data_2 );
+
+
+
+
+
+
+
+
+
+//// FALLBACK MECHANISMS
+(all user interaction has to fallback on "new page loads", when there is no javascript)
+
+

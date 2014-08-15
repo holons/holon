@@ -1,0 +1,326 @@
+// MIXINS - CUSTOM
+inputfield()
+  display               block
+  background-color      #ffffff
+  padding               5px
+  margin                0 0 0.5em 11em
+  border                1px solid #ccc
+  overflow hidden
+titlefield()
+  float                 left
+  witdth                10em
+  margin                0.5em 0 0 0
+section()
+  display               block
+  font-size             1.2em
+  font-weight           bold
+  padding 0 0 0.5em 0
+dataset()
+  margin               1em 0em 1em 3em
+  clear both
+  padding 2em 0
+
+
+// COMPONENT DEFINITION
+Component_Complexform(
+  maxWidth        = 100%,
+  baseFontSize    = 10px,
+  backgroundColor = #ffffff,
+  borderColor     = #666666,
+  shadowColor     = #666666,
+  backgroundImage = url('')
+)
+  .Complexform
+    // position            relative
+    position            absolute
+    top                 3em
+    left                3em
+    width               1100px
+    background          backgroundImage ts_clr_page_background
+    border-radius       5px
+    border              1px solid #000
+    box-shadow          0 0 5em shadowColor;
+  .Complexform--CONTEXT\\=none { }
+  .Complexform--STATE\\=normal { }
+  .Complexform--STATE\\=hidden
+    display             none
+  .Complexform--VARIANT\\=default
+   font-size           baseFontSize
+  .Complexform__menu__cancel
+    float               right
+  .Complexform__menu
+    display             block
+    background linear-gradient(top, ts_clr_header_light, ts_clr_header_dark)
+    padding             1em
+    box-shadow          0 0 0.2em shadowColor;
+  .Complexform__menu__previous
+    pw-button()
+    display             inline-block
+  .Complexform__menu__next
+    pw-button()
+    display             inline-block
+  .Complexform__menu__cancel
+    pw-button()
+    pw-button-warning()
+    display             inline-block
+  .Complexform__person
+    dataset()
+  .Complexform__person__sectionTitle
+    section()
+  .Complexform__person__gender
+      column(0.45)
+  .Complexform__person__gender__title
+    titlefield()
+  .Complexform__person__gender__input
+    inputfield()
+  .Complexform__person__department
+      column(0.45)
+
+  .Complexform__person__department__title
+    titlefield()
+  .Complexform__person__department__input
+    inputfield()
+
+  .Complexform__person__title
+      column(0.45)
+  .Complexform__person__title__title
+    titlefield()
+  .Complexform__person__title__input
+    inputfield()
+
+  .Complexform__person__position
+      column(0.45)
+  .Complexform__person__position__title
+    titlefield()
+  .Complexform__person__position__input
+    inputfield()
+  .Complexform__person__prename
+      column(0.45)
+  .Complexform__person__prename__title
+    titlefield()
+  .Complexform__person__prename__input
+    inputfield()
+  .Complexform__person__contactPerson
+      column(0.45)
+  .Complexform__person__contactPerson__title
+    titlefield()
+  .Complexform__person__contactPerson__input
+    inputfield()
+  .Complexform__person__surname
+      column(0.45)
+  .Complexform__person__surname__title
+    titlefield()
+  .Complexform__person__surname__input
+    inputfield()
+  .Complexform__person__otherContactPersons
+      column(0.45)
+  .Complexform__person__otherContactPersons__title
+    titlefield()
+  .Complexform__person__otherContactPersons__input
+    inputfield()
+  .Complexform__person__relations
+      column(0.45)
+  .Complexform__person__relations__title
+    titlefield()
+  .Complexform__person__relations__input
+    inputfield()
+  .Complexform__person__topics
+      column(0.45)
+  .Complexform__person__topics__title
+    titlefield()
+  .Complexform__person__topics__input
+    inputfield()
+
+
+  .Complexform__communication
+    dataset()
+    clear         both
+  .Complexform__communication__sectionTitle
+    section()
+  .Complexform__communication__phone
+      column(0.45)
+  .Complexform__communication__phone__title
+    titlefield()
+  .Complexform__communication__phone__input
+    inputfield()
+  .Complexform__communication__phoneCompany
+      column(0.45)
+  .Complexform__communication__phoneCompany__title
+    titlefield()
+  .Complexform__communication__phoneCompany__input
+    inputfield()
+  .Complexform__communication__mobile
+      column(0.45)
+  .Complexform__communication__mobile__title
+    titlefield()
+  .Complexform__communication__mobile__input
+    inputfield()
+  .Complexform__communication__fax
+      column(0.45)
+  .Complexform__communication__fax__title
+    titlefield()
+  .Complexform__communication__fax__input
+    inputfield()
+  .Complexform__communication__email
+      column(0.45)
+  .Complexform__communication__email__title
+    titlefield()
+  .Complexform__communication__email__input
+    inputfield()
+  .Complexform__communication__emailCompany
+      column(0.45)
+  .Complexform__communication__emailCompany__title
+    titlefield()
+  .Complexform__communication__emailCompany__input
+    inputfield()
+
+
+
+  .Complexform__address
+    dataset()
+    clear         both
+.Complexform__address__sectionTitle
+    section()
+  .Complexform__address__name1
+      column(0.45)
+
+  .Complexform__address__name1__title
+    titlefield()
+  .Complexform__address__name1__input
+    inputfield()
+  .Complexform__address__name2
+      column(0.45)
+  .Complexform__address__name2__title
+    titlefield()
+  .Complexform__address__name2__input
+    inputfield()
+  .Complexform__address__street1
+      column(0.45)
+  .Complexform__address__street1__title
+    titlefield()
+  .Complexform__address__street1__input
+    inputfield()
+  .Complexform__address__street2
+      column(0.45)
+  .Complexform__address__street2__title
+    titlefield()
+  .Complexform__address__street2__input
+    inputfield()
+  .Complexform__address__zip
+      column(0.45)
+  .Complexform__address__zip__title
+    titlefield()k
+  .Complexform__address__zip__input
+    inputfield()
+  .Complexform__address__postbox
+      column(0.45)
+  .Complexform__address__postbox__title
+    titlefield()
+  .Complexform__address__postbox__input
+    inputfield()
+  .Complexform__address__city
+      column(0.45)
+  .Complexform__address__city__title
+    titlefield()
+  .Complexform__address__city__input
+    inputfield()
+  .Complexform__address__zipbox
+      column(0.45)
+  .Complexform__address__zipbox__title
+    titlefield()
+  .Complexform__address__zipbox__input
+    inputfield()
+  .Complexform__address__country
+      column(0.45)
+  .Complexform__address__country__title
+    titlefield()
+  .Complexform__address__country__input
+    inputfield()
+  .Complexform__address__region
+      column(0.45)
+  .Complexform__address__region__title
+    titlefield()
+  .Complexform__address__region__input
+    inputfield()
+
+
+
+  .Complexform__settings
+    dataset()
+    clear         both
+.Complexform__settings__sectionTitle
+    section()
+  .Complexform__settings__event
+      column(0.45)
+  .Complexform__settings__event__title
+    titlefield()
+  .Complexform__settings__event__input
+    inputfield()
+  .Complexform__settings__phone
+      column(0.45)
+  .Complexform__settings__phone__title
+    titlefield()
+  .Complexform__settings__phone__input
+    inputfield()
+  .Complexform__settings__email
+      column(0.45)
+  .Complexform__settings__email__title
+    titlefield()
+  .Complexform__settings__email__input
+    inputfield()
+  .Complexform__settings__fax
+      column(0.45)
+  .Complexform__settings__fax__title
+    titlefield()
+  .Complexform__settings__fax__input
+    inputfield()
+  .Complexform__settings__massEmail
+      column(0.45)
+  .Complexform__settings__massEmail__title
+    titlefield()
+  .Complexform__settings__massEmail__input
+    inputfield()
+  .Complexform__settings__letter
+      column(0.45)
+  .Complexform__settings__letter__title
+    titlefield()
+  .Complexform__settings__letter__input
+    inputfield()
+  .Complexform__settings__office
+      column(0.45)
+  .Complexform__settings__office__title
+    titlefield()
+  .Complexform__settings__office__input
+    inputfield()
+
+
+  .Complexform__journal
+    dataset()
+    clear         both
+  .Complexform__journal__sectionTitle
+    section()
+  .Complexform__journal__title
+    display             none
+  .Complexform__journal__newEntry
+    inputfield()
+    margin 0 6.8em 0 0
+    border-bottom none
+  .Complexform__journal__entry
+    display             inline-block
+  .Complexform__journal__entry
+    inputfield()
+    margin 0 6.8em 0 0
+  .Complexform__journal__entry__content
+    display             inline-block
+  .Complexform__journal__entry__footer
+    color #999
+    display             inline-block
+  .Complexform__journal__entry__date
+    color #aac7e8
+    display             inline-block
+  .Complexform__journal__entry__time
+    display             inline-block
+    color #aac7e8
+  .Complexform__journal__entry__user
+    display             inline-block
+    color #aac7e8

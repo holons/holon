@@ -1,0 +1,41 @@
+http://ifandelse.com/its-not-hard-making-your-library-support-amd-and-commonjs/
+https://github.com/umdjs/umd
+///////////// UMD
+
+
+https://github.com/ifandelse/UMD-Examples
+http://nodejs.org/api/modules.html
+https://github.com/dsheiko/cjsc
+DEBUG => WebTools
+Specify source map location
+cjsc main.js build.js --source-mal=build/*.map --source-map-root=../src
+
+
+
+
+////////////// USE
+
+// AMD
+require(['path/to/myModule'], function (myModule){
+  // use myModule here
+});
+ 
+// Node.js
+var myModule = require('myModule');
+ 
+// Global
+myModule
+// if myModule is already defined, `noConflict` gives it back
+var myNonConflictingModule = myModule.noConflict();
+
+
+//// INSPIRE
+
+https://github.com/jeromeetienne/dropinrequire.js/blob/master/dropin_require.original.js
+https://github.com/jeromeetienne/dropinrequire.js/blob/master/dropin_require.js
+
+https://curiosity-driven.org/minimal-loader
+
+https://github.com/adriancooney/tinyrequire
+
+https://github.com/wvl/loadstar

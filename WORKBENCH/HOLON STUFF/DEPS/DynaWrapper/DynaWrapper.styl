@@ -1,0 +1,131 @@
+// COMPONENT DEFINITION
+Component_Dynatable(
+  fontColor1        = #ffffff,
+  fontColor2        = #999999,
+  backgroundColor1  = #ffffff,
+  backgroundColor2  = #ffcccc,
+  backgroundColor3  = #cccccc,
+  borderColor1      = #444444,
+  borderColor2      = #000000,
+  borderColor3      = #999999
+)
+  // LEGACY STYLING (for Component Dependencies)
+  th, td
+   font-size           baseFontSize
+  th a
+    color                 fontColor1
+    text-decoration       none
+    display               block
+    width                 100%
+    height                100%
+    padding               0.3em
+  th a:hover
+    color                 fontColor1
+  .dynatable-pagination-links
+    float                 right
+  .dynatable-record-count
+    display               block
+    padding               5px 0
+    display none !important
+  .dynatable-pagination-links span
+    margin-right          1em
+    display none !important
+  .dynatable-pagination-links span,
+  .dynatable-pagination-links li
+    display               inline-block
+  .dynatable-page-link,
+  .dynatable-page-break
+    display               block
+    padding               5px 7px
+  .dynatable-page-link
+    pw-button()
+    cursor                pointer
+  .dynatable-page-link:hover
+    pw-button-action()
+  .dynatable-active-page .dynatable-page-link
+    pw-button-active()
+  .dynatable-active-page:hover .dynatable-page-link
+    pw-button-action()
+  .dynatable-disabled-page,
+  .dynatable-disabled-page:hover
+    background            none
+    color                 fontColor2
+    cursor                normal
+  .dynatable-processing
+    background            borderColor2
+    opacity               0.6
+    -webkit-border-radius 4px
+    -moz-border-radius    4px
+    border-radius         4px
+  .dynatable-processing span
+    background            backgroundColor1
+    border                solid 2px borderColor1
+    color                 #333
+    padding               25px
+    font-size             2em
+    box-shadow            0px 0px 15px rgba(0,0,0,0.5)
+  .dynatable-processing span img
+    vertical-align        middle
+  .dynatable-per-page-label 
+    padding         0 1em 0 2em 
+  .dynatable-per-page-select
+    pw-button()
+  ////////////////////////////////////////////////////////
+  // COMPONENT: Dynatable
+  .Dynatable
+    position            relative
+  .Dynatable--CONTEXT\\=none { }
+  .Dynatable--STATE\\=normal { }
+  .Dynatable--VARIANT\\=default
+    padding             0
+    margin              0 auto
+  .Dynatable--CONTEXT\\=none table { }
+  .Dynatable--STATE\\=normal table { }
+  .Dynatable--VARIANT\\=default table
+    background-color    backgroundColor1
+    padding             0
+    margin              0 auto
+    border-collapse     collapse
+    width               100%
+  .Dynatable__menu
+    color               ts_clr_text_light
+    display             block
+    background linear-gradient(top, ts_clr_header_light, ts_clr_header_dark)
+    padding             1em 2em
+    border-left         1px solid ts_clr_header_dark
+    border-right        1px solid ts_clr_header_dark
+    .Dynatable__createItem
+      pw-button()
+    .Dynatable__createItem:hover
+      pw-button-action()
+    .Dynatable__search
+      display           inline-block
+      padding           0 2em
+      pw-button()
+    .Dynatable__paginator
+      float             right
+      position          relative
+      bottom            6px
+      overflow          none
+      display           inline-block
+      span, ul
+        display         inline-block
+      ul
+        padding         0
+        margin          0
+        float           none
+  .Dynatable__titleCell
+    font-weight         normal
+    background-color    ts_clr_header_dark
+    border              1px solid ts_clr_header_dark
+    margin              0
+    text-align          left
+  .Dynatable__contentCell,
+  .Dynatable table tbody tr td
+    border              1px solid ts_clr_header_dark
+    padding             3px
+    margin              0
+    text-align          left
+  .Dynatable table tbody tr:hover
+    background ts_clr_active_cells
+    cursor                pointer

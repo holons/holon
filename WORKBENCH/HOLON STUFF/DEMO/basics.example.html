@@ -1,0 +1,44 @@
+<html>
+  <head>
+    <script src="RainbowUnicorn.js"></script> <!-- BUNDLE.JS (webpack or browserify) -->
+<!--     <script type="text/javascript" src='../DEPS/Request/Request.js'></script>
+    <script type="text/javascript" src='../DEPS/HTML2DOM/HTML2DOM.js'></script>
+    <link id='Complexform' type='text/html' href='../DEPS/Complexform/Complexform.html'>
+    <link id='DynaWrapper' type='text/html' href='../DEPS/DynaWrapper/DynaWrapper.html'>
+    <script src='../bower_components/jquery/dist/jquery.min.js'></script>
+    <script src='../bower_components/dynatable/jquery.dynatable.js'></script>
+    <script src='../SPECIFICATION/dataformat.js'></script> -->
+    <link rel='stylesheet' type='text/css' href='./RainbowUnicorn.css'> <!--stylus-->
+  </head>
+  <body>
+
+
+    <div id='RainbowUnicorn'></div>
+
+
+    <!-- <div id='TEMPLATES' style='display: none; !important'></div> -->
+    <script>
+    // BACKEND: Here the "TEMPLATE" would be loaded and "DATA" would be used to:
+    // => Render the Component in the Backend
+    // ...
+    // var data      = 'some ruby stuff';
+    // var template  = 'get template file content';
+    // // render(container, template, data);
+    // render('#RainbowUnicorn', template, data); // load in backend
+
+
+    // FRONTEND: Here the "TEMPLATE" would be loaded and "GENERATED DATA" would be used to:
+    // => Render the Component in the Frontend
+    var data      = '';
+    var template  = '';
+    function build(template, data) {
+      
+    }
+    function render(container, template, data) {
+      document.querySelector('#RainbowUnicorn').appendChild(build(template, data));
+    }
+    render('#RainbowUnicorn', template, data); // load in frontend
+
+    </script>
+  </body>
+</html>

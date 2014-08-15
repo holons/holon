@@ -1,0 +1,395 @@
+<!--:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+::::  CONTENT - OLD
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::-->
+<h1> Live Styleguide </h1>
+<hr><hr>
+<h1> Server Side Rendering </h1>
+<div id="main" style="display:inline-block; width:25%;">
+      <ul id="tiles">
+        <!--:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+        ::::  SCOPE
+        ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::-->
+        <% if @list_of_articles %><% @list_of_articles.each_with_index do |article, index|
+          data_title      = article.try(:title).blank? ? '' : article.title
+          data_category   = article.try(:parent).try(:title).blank? ? '' : article.parent.title
+          data_tags       = article.try(:place).try(:categories).any? ? article.place.categories.map(&:title) : ['']
+          data_public_url = article.try(:public_url).blank? ? '' : article.public_url
+          data_image      = article.try(:image, "standard", "big").blank? ? '/system/images/77/original/Diener_fb_blurred_cover_01.jpg' : article.image("standard", "big")
+        %>
+        <!--:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+        ::::  PLACE TEASERBOXES
+        ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::-->
+        <li
+          data-id="<%= index %>"
+          data-sort-image="<%= data_image.blank? ? false : true %>"
+          data-sort-name="<%= data_title %>"
+          data-filter-class="<%= data_tags.map{|tag| tag.downcase} %>">
+          <div class="Teaserbox  Teaserbox--STATE=pending
+          Teaserbox--VARIANT=<%= article.article_type.split(' ')[0].downcase %>"
+          data-json="{
+            'title'       : <%= data_title %>,
+            'category'    : <%= data_category %>,
+            'public_url'  : <%= data_public_url %>,
+            'image'       : <%= data_image %>,
+          }"
+          onclick="(function () {
+            location.href='<%= data_public_url %>';
+          })();">
+            <div class="Teaserbox__ribbon"></div>
+            <img class="Teaserbox__image" src="<%= data_image %>" alt="<%= data_title %>">
+            <div class="Teaserbox__info">---</div>
+            <div class="Teaserbox__title"><%= data_title %></div>
+            <div class="Teaserbox__description"><%= data_category %></div>
+          </div>
+        </li>
+        <!--::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::-->
+        <!--::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::-->
+        <% end end %>
+      </ul>
+</div>
+<xmp style="display:inline-block; width:25%;">
+<div id="main">
+      <ul id="tiles">
+        <!--:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+        ::::  SCOPE
+        ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::-->
+        <% if @list_of_articles %><% @list_of_articles.each_with_index do |article, index|
+          data_title      = article.try(:title).blank? ? '' : article.title
+          data_category   = article.try(:parent).try(:title).blank? ? '' : article.parent.title
+          data_tags       = article.try(:place).try(:categories).any? ? article.place.categories.map(&:title) : ['']
+          data_public_url = article.try(:public_url).blank? ? '' : article.public_url
+          data_image      = article.try(:image, "standard", "big").blank? ? '/system/images/77/original/Diener_fb_blurred_cover_01.jpg' : article.image("standard", "big")
+        %>
+        <!--:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+        ::::  PLACE TEASERBOXES
+        ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::-->
+        <li
+          data-id="<%= index %>"
+          data-sort-image="<%= data_image.blank? ? false : true %>"
+          data-sort-name="<%= data_title %>"
+          data-filter-class="<%= data_tags.map{|tag| tag.downcase} %>">
+          <div class="Teaserbox  Teaserbox--STATE=pending
+          Teaserbox--VARIANT=<%= article.article_type.split(' ')[0].downcase %>"
+          data-json="{
+            'title'       : <%= data_title %>,
+            'category'    : <%= data_category %>,
+            'public_url'  : <%= data_public_url %>,
+            'image'       : <%= data_image %>,
+          }"
+          onclick="(function () {
+            location.href='<%= data_public_url %>';
+          })();">
+            <div class="Teaserbox__ribbon"></div>
+            <img class="Teaserbox__image" src="<%= data_image %>" alt="<%= data_title %>">
+            <div class="Teaserbox__info">---</div>
+            <div class="Teaserbox__title"><%= data_title %></div>
+            <div class="Teaserbox__description"><%= data_category %></div>
+          </div>
+        </li>
+        <!--::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::-->
+        <!--::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::-->
+        <% end end %>
+      </ul>
+</div>
+</xmp>
+
+
+
+
+<hr><hr>
+<h1> Client Side Rendering + Updating </h1>
+<div id="main" style="display:inline-block; width:25%;">
+      <ul id="tiles">
+        <!--:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+        ::::  SCOPE
+        ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::-->
+        <% if @list_of_articles %><% @list_of_articles.each_with_index do |article, index|
+          data_title      = article.try(:title).blank? ? '' : article.title
+          data_category   = article.try(:parent).try(:title).blank? ? '' : article.parent.title
+          data_tags       = article.try(:place).try(:categories).any? ? article.place.categories.map(&:title) : ['']
+          data_public_url = article.try(:public_url).blank? ? '' : article.public_url
+          data_image      = article.try(:image, "standard", "big").blank? ? '/system/images/77/original/Diener_fb_blurred_cover_01.jpg' : article.image("standard", "big")
+        %>
+        <!--:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+        ::::  PLACE TEASERBOXES
+        ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::-->
+        <li
+          data-id="<%= index %>"
+          data-sort-image="<%= data_image.blank? ? false : true %>"
+          data-sort-name="<%= data_title %>"
+          data-filter-class="<%= data_tags.map{|tag| tag.downcase} %>">
+          <div class="Teaserbox  Teaserbox--STATE=pending
+          Teaserbox--VARIANT=<%= article.article_type.split(' ')[0].downcase %>"
+          data-json="{
+            'title'       : <%= data_title %>,
+            'category'    : <%= data_category %>,
+            'public_url'  : <%= data_public_url %>,
+            'image'       : <%= data_image %>,
+          }"
+          onclick="(function () {
+            location.href='<%= data_public_url %>';
+          })();">
+            <div class="Teaserbox__ribbon"></div>
+            <img class="Teaserbox__image" src="<%= data_image %>" alt="<%= data_title %>">
+            <div class="Teaserbox__info">---</div>
+            <div class="Teaserbox__title"><%= data_title %></div>
+            <div class="Teaserbox__description"><%= data_category %></div>
+          </div>
+        </li>
+        <!--::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::-->
+        <!--::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::-->
+        <% end end %>
+      </ul>
+</div>
+<xmp style="display:inline-block; width:25%;">
+<div id="main" role="main">
+      <ul id="tiles">
+        <!--:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+        ::::  SCOPE
+        ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::-->
+        <% if @list_of_articles %><% @list_of_articles.each_with_index do |article, index|
+          data_title      = article.try(:title).blank? ? '' : article.title
+          data_category   = article.try(:parent).try(:title).blank? ? '' : article.parent.title
+          data_tags       = article.try(:place).try(:categories).any? ? article.place.categories.map(&:title) : ['']
+          data_public_url = article.try(:public_url).blank? ? '' : article.public_url
+          data_image      = article.try(:image, "standard", "big").blank? ? '/system/images/77/original/Diener_fb_blurred_cover_01.jpg' : article.image("standard", "big")
+        %>
+        <!--:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+        ::::  PLACE TEASERBOXES
+        ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::-->
+        <li
+          data-id="<%= index %>"
+          data-sort-image="<%= data_image.blank? ? false : true %>"
+          data-sort-name="<%= data_title %>"
+          data-filter-class="<%= data_tags.map{|tag| tag.downcase} %>">
+          <div class="Teaserbox  Teaserbox--STATE=pending
+          Teaserbox--VARIANT=<%= article.article_type.split(' ')[0].downcase %>"
+          data-json="{
+            'title'       : <%= data_title %>,
+            'category'    : <%= data_category %>,
+            'public_url'  : <%= data_public_url %>,
+            'image'       : <%= data_image %>,
+          }"
+          onclick="(function () {
+            location.href='<%= data_public_url %>';
+          })();">
+            <div class="Teaserbox__ribbon"></div>
+            <img class="Teaserbox__image" src="<%= data_image %>" alt="<%= data_title %>">
+            <div class="Teaserbox__info">---</div>
+            <div class="Teaserbox__title"><%= data_title %></div>
+            <div class="Teaserbox__description"><%= data_category %></div>
+          </div>
+        </li>
+        <!--::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::-->
+        <!--::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::-->
+        <% end end %>
+      </ul>
+</div>
+</xmp>
+
+<hr><hr>
+<h1> IDEAL VERSION </h1>
+<!--:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+::::  CONTENT - IDEAL
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::-->
+<!-- //// BEM COMPONENT MODEL ////
+
+REQUIREMENTS:
+- SHIMMED PER ENVIRONMENT
+- Performance
+- Component Model
+    - Templating
+    - i18n // e.g. <script src="#{local}.js"> + i18n with JSON data
+    - Transforms (e.g. Date & Currency Formatting)
+    - App Logic
+    - Routing
+    - Model Validation
+    - API Interaction
+    - ...?
+- Data Binding  // Declarative Bindings: Tempaltes === Pure HTML
+  // => No more messy RENDER METHODS
+  // => Dont think about updating
+- Standards Support
+- Internationalization (i18n)
+- SEO
+- Long Term
+- DRY
+- Faster Development
+- Flexibility
+- "Quality Features"
+
+-->
+
+<div id='person' data-json='{text: name, value: name'}></div>
+
+<div id="main">
+      <ul id="tiles">
+        <!--:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+        ::::  SCOPE
+        ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::-->
+        <% if @list_of_articles %><% @list_of_articles.each_with_index do |article, index|
+          data_title      = article.try(:title).blank? ? '' : article.title
+          data_category   = article.try(:parent).try(:title).blank? ? '' : article.parent.title
+          data_tags       = article.try(:place).try(:categories).any? ? article.place.categories.map(&:title) : ['']
+          data_public_url = article.try(:public_url).blank? ? '' : article.public_url
+          data_image      = article.try(:image, "standard", "big").blank? ? '/system/images/77/original/Diener_fb_blurred_cover_01.jpg' : article.image("standard", "big")
+        %>
+        <!--:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+        ::::  PLACE TEASERBOXES
+        ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::-->
+        <li
+          data-id="<%= index %>"
+          data-sort-image="<%= data_image.blank? ? false : true %>"
+          data-sort-name="<%= data_title %>"
+          data-filter-class="<%= data_tags.map{|tag| tag.downcase} %>">
+          <div class="Teaserbox  Teaserbox--STATE=pending
+          Teaserbox--VARIANT=<%= article.article_type.split(' ')[0].downcase %>"
+          data-json="{
+            'title'       : <%= data_title %>,
+            'category'    : <%= data_category %>,
+            'public_url'  : <%= data_public_url %>,
+            'image'       : <%= data_image %>,
+          }"
+          onclick="(function () {
+            location.href='<%= data_public_url %>';
+          })();">
+            <div class="Teaserbox__ribbon"></div>
+            <img class="Teaserbox__image" src="<%= data_image %>" alt="<%= data_title %>">
+            <div class="Teaserbox__info">---</div>
+            <div class="Teaserbox__title"><%= data_title %></div>
+            <div class="Teaserbox__description"><%= data_category %></div>
+          </div>
+        </li>
+        <!--::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::-->
+        <!--::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::-->
+        <% end end %>
+      </ul>
+</div>
+
+<div
+  id="person1"
+  class="Person Person--STATE=default"
+  data-url="/v0.0.1/de/api/model/person/1"    <!-- Models Collections + Persistance + Updated -->
+  data-i18n="de"                              <!-- i18n / locales -->
+  data-transformchain="['fn1','fn2','fn3']"   <!-- e.g. currency formatting, date formatting, ... -->
+  
+  data-onclick="pushState('/person/1')"                 <!-- routing -->
+  data-handlers="{onclick: 'test1', onswipe: 'test2'}"  <!-- user interaction -->
+
+  data-json=""                                <!-- initial server rendered data from data-url -->
+>
+  <div class="Person__hand"   data-bind="name" >
+    <!-- server can initialize content here -->
+  </div>
+  <div class="Person__finger" data-bind='text:name' >
+    <!-- server can initialize content here -->
+  </div>
+  <div class="Person__feet"   data-bind='value'>
+    <!-- server can initialize content here -->
+  </div>
+</div>
+
+
+
+<script> /* SERVER
+  e.g.  https://github.com/jbarnette/johnson
+  Johnson.evaluate << JS
+*/
+  (function() {
+    // Data from viewmodel adapter
+    var name = 'Sean McBride';
+
+    // Binding String from template
+    return {text:name};
+  })();
+/*
+JS
+# => { "text" => "Sean McBride" }
+*/
+
+// PHASES
+// - init
+// - update
+//// PROCESS
+// 1. Get Template Source
+// 2. Evaluate all bindings with ViewModel Data
+// 3. Turn Template into DOM fragment
+// 4. Execute each binding with values to modify DOM
+// 5. Output HTML
+</script>
+
+
+<!--::::::::::::::::::::::::::::::::::;:::::::::::::::::::::::::::::::::::::-->
+<!--::::::::::::::::::::::::::::::::::;:::::::::::::::::::::::::::::::::::::-->
+<!--::::::::::::::::::::::::::::::::::;:::::::::::::::::::::::::::::::::::::-->
+<!--::::::::::::::::::::::::::::::::::;:::::::::::::::::::::::::::::::::::::-->
+<script> // BEMify
+
+
+///////////////////////////// DATA
+var DATA = [{ name: 'hij1nx',  title : 'code slayer' },
+            { name: 'tmpvar', title : 'code pimp' }];
+
+
+///////////////////////////// CONTAINER
+var CONTAINER = document.querySelector('.Teaserbox') || '.Teaserbox';
+var div = document.getElementById('div-item-data');
+
+// HTML5 Convention
+div.dataset = {
+  name: div.getAttribute("data-item-name"),
+  cost: div.getAttribute("data-item-cost"),
+  id  : div.getAttribute("data-item-id")
+};
+
+
+///////////////////////////// TEMPLATE
+// And then, from a JS function, doing something like:
+// article is an object probably from a JSON
+var thing = getFromAjax('/thing');
+requestcontainer.querySelector('.data-title').textContent=thing.title;
+container.querySelector('.data-content').textContent=thing.content;
+var tags = container.querySelector('.data-tags');
+tags.innerHTML="";
+thing.tags.forEach(function (tag) {
+  tags.appendChild(document.createElement("li")).textContent=tag.name;
+});
+//// SUB COMPONENTS -->
+// <!-- Partial included via {{>tags}} -->
+
+// [path/to/Thing.html]
+// <div class="Thing">
+//   <div class="Thing__title"><!-- article.title --></div>
+//   <div class="Thing__content"><!-- article.content --></div>
+//   <div class="Thing__tags:Tag">
+//     <!-- article.tags.each { |tag| -->
+//       // ... <%= tag.name %>
+//     <!-- } -->
+//   </div>
+// </div>
+
+// [path/to/Teaserbox.html]
+  // <ul class='contacts'>
+  //   <li class='contact'>
+  //     <span class='name'>My Name</span>
+  //     <p class='title'>Leet Developer</p>
+  //   </li>
+  // </ul>
+//// CONVENTION IDEAS:
+"div-item-data"
+"data-type-Teaserbox"
+"data-use-Cloud/Place/Event/..."
+"data-item-name"
+"data-item-id"
+"data-item-cost"
+"data-item-price"
+"data-transformchain" = ['sum', 'currency'] // pipes value through transform
+
+
+///////////////////////////// COMPILE
+function compile (CONTAINER, DATA) {
+  //// SELECT:
+  // getElementById() and getAttribute() and querySelector...
+
+}
+</script>

@@ -1,16 +1,41 @@
+table of content
+=======
+* [introduction](#holon)
+* [demo](#demo)
+* [usage](#usage)
+* [api](#api)
+* [authors](#authors)
+* [jobs](#jobs)
+* [contribute](#contribute)
+* [repository description](#repository)
+* [license](#license)
+
+
+
+
 holon
 =====
+[[back to top](#table-of-content)]
+
 Leight-weight DSL-free dual-side composable reactive components
 ![holon](https://raw.github.com/coding-amigos/holon/master/holon.png)
 
 
+
+
 demo
 =======
+[[back to top](#table-of-content)]
+
 __☠☠☠ section is under construction ☠☠☠__
+
+
 
 
 usage
 =======
+[[back to top](#table-of-content)]
+
 __☠☠☠ section is under construction ☠☠☠__
 
 install with [npm](http://npmjs.org) do:
@@ -30,19 +55,31 @@ git clone https://github.com/coding-amigos/holon.git
 ```
 
 
+
+
 api
 =======
+[[back to top](#table-of-content)]
+
 __☠☠☠ section is under construction ☠☠☠__
+
+
 
 
 authors
 =======
+[[back to top](#table-of-content)]
+
 * [serapath](https://github.com/serapath "Alexander Praetorius")
+
+
 
 
 jobs
 =======
-There is more jobs in the source code marked with `// @TODO: <job description>` and eventually some jobs might be listed under the [holon issues](https://github.com/coding-amigos/holon/issues "holon - open issues") page.
+[[back to top](#table-of-content)]
+
+There is more jobs in the source code marked with `// @TODO: <job description>` and eventually some jobs might be listed under the [holon issues](https://github.com/coding-amigos/holon/issues "holon - open issues") page, which can also be accessed through [waffle.io](https://waffle.io/coding-amigos/holon "holon - open issues").
 * __@TODO:__ Publish it as a component
   * http://modernweb.com/2014/02/17/introduction-to-the-component-javascript-package-manager/
   * https://github.com/component/component/wiki/Components
@@ -52,10 +89,19 @@ There is more jobs in the source code marked with `// @TODO: <job description>` 
 * __@TODO:__ Include Testing via "Specification Driven Development" using gherkin dsl & TESTEM
   * https://github.com/cucumber/cucumber/wiki/Gherkin
   * https://github.com/airportyh/testem
+* __@TODO:__ Add 'Leight-weight DSL-free dual-side composable "BEMified" reactive components' + more verbose description to README.markdown
+* __@TODO:__ Edit all 'under construction sections' in README.markdown (at least add "@TODO's" for them to the "Jobs Section")
+* __@TODO:__ Add CHANGELOG File
+* __@TODO:__ This section should instead list all the TODO-Branches currently available + a link to the "TODO Description file in that branch"
+  * The README.markdown in that branch could list the description under the "jobs section"
+
+__☠☠☠ section is under construction ☠☠☠__
 
 
 contribute
 =======
+[[back to top](#table-of-content)]
+
 ### PREPARE SYSTEM
   * install [git](http://git-scm.com "git") if it is not yet installed on your system
   * install [node](http://nodejs.org "nodejs") if it is not yet installed on your system
@@ -79,29 +125,37 @@ contribute
 __... HAPPY CODING :-)__
 
 
+
+
 repository
 ==========
-1. `./`
+[[back to top](#table-of-content)]
+
+1. __`./`__
   * Contains meta data about this component
-2. `./DEMO`
+2. __`./DEMO`__
   * Contains a file that demonstrate how to use this component in your project
-3. `./DEPS`
+3. __`./DEPENDENCIES`__
   * Contains all dependencies used by this component, but not yet published to their own repositories
-4. `./RELEASE`
+4. __`./RELEASE`__
   * Contains production ready versions of this component which are used by examples in `./DEMO`
   * __CDNs:__ `v0.0.3@git`, `v0.0.2@npm`, `v0.0.2@bower`
-5. `./SOURCE`
+5. __`./SOURCE`__
   * Contains all the source files for this component
-6. `./SOURCE/media`
+6. __`./SOURCE/media`__
   * Contains fonts, images, videos, music and the like, used by this component
-7. `./SPECIFICATION`
+7. __`./SPECIFICATION`__
   * Contains the vision, roadmap, open jobs and tests for completed jobs regarding this component
-8. `./WORKBENCH`
+8. __`./WORKBENCH`__
   * Contains some experimental stuff for inspiration to "spike" the use of certain technologies to develop this component further
+
+
 
 
 license
 =======
+[[back to top](#table-of-content)]
+
 <p xmlns:dct="http://purl.org/dc/terms/" xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
   <a rel="license"
      href="http://creativecommons.org/publicdomain/zero/1.0/">

@@ -1,0 +1,42 @@
+DEV
+
+NPM USAGE
+http://www.devthought.com/2012/02/17/npm-tricks/
+
+=======
+http://learnjs.io/blog/2014/03/17/using-browserify-with-rails/
+For "live reload" browserify workflow
+
+=======
+NPM LINK
+Developing a sub-module concurrently with a parent module can be cumbersome. Oftentimes you do not want to have to push/publish a new version to test a child module in a parent module. This can be easily solved with npm link. If your child module is checked out in the same directory you can simply npm link ../child-module and it will create suitable symlinks for you.
+
+=======
+Dependency Watching
+https://david-dm.org/
+
+Use something like Travis CI and put the badges on your README
+
+I will also note that Bitbucket has more favorable pricing than Github for many small private repositories, and near feature parity otherwise. Bitbucket charges per collaborator, while Github charges per private repository.
+
+
+=======
+Project Module Scaffolding
+https://github.com/visionmedia/ngen
+
+Customize one of the built-in templates to your liking. You can also pull commonly-used Gruntfile snippets and other tools into a common build-tools repository that every project uses as a devDependency. For example, we have a template that includes:
+
+a lib/.js
+a lib/.test.js spec file
+a README.md with a customizeable description and the basics on how to develop the module
+a Gruntfile.js with watch, browserify (to build the spec files for testing), jshint, and release (for tagging)
+.editorrc and .jshintrc files for maintaining code consistency.
+a testem.json for configuring testem for running the tests continuously in multiple browsers.
+a Makefile that serves as the catalog for all tasks that can be run and for bootstrapping development quickly. a make dev will install all the dependencies, build, and launch testem in watch mode with a single command. It also contains a make initialize command that will create the repository on Github/Bitbucket, and add all the hooks for things like Campfire and Continuous Integration.
+
+
+
+You get all of this out of the box with a single ngen command. It is somewhat similar to Yeoman, except not opinionated. Instead, you can tailor your ngen templates to your own opinions.
+
+COMPARE TO SLUSHjs
+=======

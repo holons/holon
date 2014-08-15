@@ -1,0 +1,56 @@
+<div
+  data-template       ='/v0.0.1/api/components/DynaWrapper.html'
+  data-style          ='/v0.0.1/api/components/DynaWrapper.css'
+  data-script         ='/v0.0.1/api/components/DynaWrapper.js'
+  
+  class               ='
+    Dynatable
+    Dynatable--CONTEXT=none
+    Dynatable--STATE=normal
+    Dynatable--VARIANT=default
+  '
+  data-url            =''
+  data-schema         =''
+  data-json           =''
+  data-api-interface  ='  '
+  data-api-events     ='  '
+>
+  <div class='Dynatable__menu'>
+    <button class='Dynatable__createItem'> Neu </button>
+    <div class='Dynatable__search'></div>
+    <div class='Dynatable__paginator'></div>
+  </div>
+  <table>
+    <thead>
+      <tr
+        class='
+          Dynatable__header
+        '
+      >
+        <th
+          class='
+            Dynatable__titleCell
+          '
+          data-template='Dynatable__titleCell'
+        ></th>
+        <!--
+              Sometimes, we need columns with labels different than the record attribute name. If a column heading contains the data-dynatable-column attribute, the associated record attribute will be named by that value.
+            
+              USAGE:
+                If 'data-dynatable-column' is not present, the lowercased content of header cell is used to determine row content, if present, then attribute value will be to determine row content instead.
+                data-dynatable-column > table cell content
+
+              On table column headers
+                data-dynatable-column
+                data-dynatable-sorts
+                data-dynatable-no-sort
+                On query inputs
+                data-dynatable-query-event
+                data-dynatable-query
+        -->
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+</div>

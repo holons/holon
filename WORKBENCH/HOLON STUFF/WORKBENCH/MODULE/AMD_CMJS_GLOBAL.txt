@@ -1,0 +1,56 @@
+AMD, CMJS, GLOBAL, ..
+
+
+data-main="src/main.js
+data-init="main.js"
+
+
+
+
+/* CJSM == AMD */
+require.memoize() == define()
+module.load() == require()
+CommonJS Package Mappings/C
+
+write packages that could execute in a server environment in CJSM format
+write packages that could benefit from AMD's browser-friendly features in AMD format
+write AMD modules in the AMD hybrid format unless they use plugins
+	consider using AMD plugins, they can be a huge advantage
+unscriptable.com - AMD vs. CommonJS
+
+
+	RequireJS
+	PINF
+	https://github.com/pinf/loader-js/
+	curl
+	https://github.com/cujojs/curl
+
+or
+// https://github.com/requirejs/cajon
+// https://www.npmjs.org/package/cajon
+
+or
+http://urequire.org/history
+https://github.com/anodynos/uRequire
+
+MY TAKEAWAYS:
+- AMD -> for lazyLoading, for dynamically extending codebase
+- CMJS -> for everything is needed upfront
+
+BUT:
+http://calendar.perfplanet.com/2011/lazy-evaluation-of-commonjs-modules/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

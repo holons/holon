@@ -98,6 +98,7 @@ There is more jobs in the source code marked with `// @TODO: <job description>` 
   * http://www.wolfe.id.au/2014/02/01/getting-a-new-node-project-started-with-npm/ 
   * http://quickleft.com/blog/creating-and-publishing-a-node-js-module
   * http://www.devthought.com/2012/02/17/npm-tricks/
+* __@TODO:__ find convention for branch names, e.g. {CA-1}{SPIKE}{jeet.gs} and COMMIT NAMES
 
 __☠☠☠ section is under construction ☠☠☠__
 

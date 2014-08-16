@@ -23,7 +23,7 @@ function UMD_EXPORTER (CUSTOM_NAMESPACE, CUSTOM_FACTORY) {
   } else if (isGlobal) {
     var MODULE = FACTORY();
     ROOT[NAMESPACE] = ROOT[NAMESPACE] ? ROOT[NAMESPACE] : {};
-    ROOT[NAMESPACE][MODULE.NAME] = MODULE; // Browser <script> tag
+    ROOT[NAMESPACE][FACTORY.NAME] = MODULE; // Browser <script> tag
     // @TODO: bake in "noConflict"
     // var theModule = definition(), global = this, old = global[name];
     // theModule.noConflict = function () {
@@ -43,7 +43,7 @@ function UMD_EXPORTER (CUSTOM_NAMESPACE, CUSTOM_FACTORY) {
     var
       isNode = typeof global !== "undefined"
         && ({}).toString.call(global) == '[object global]',
-      isBrowser = typeof window !== "undefined"
+      isBrowser = typeof window !== "undefined" || typeof document !== 'undefined'
         // && ({}).toString.call(window) == '[object global]'
         && window.toString() === '[object Window]'
     ;

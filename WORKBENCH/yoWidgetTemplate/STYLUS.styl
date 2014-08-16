@@ -1,0 +1,205 @@
+/*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  PLACES - LAYOUT & STYLING
+    @authors: [Alexander Praetorius]
+    @company: http://www.ikusei.de
+  -----------------------------
+  JEET - (Syntax Quick Reference)
+    column(ratios = 1, offset = 0, cycle = 0, uncycle = 0)
+    span(ratio = 1, offset = 0)
+    shift(ratios = 0, col_or_span = column)
+    unshift()
+    edit()
+    center(max_width = 1410px, pad = 0)
+    stack(pad = 0, align = false)
+    unstack()
+    align(direction = both)
+    cf()
+  -----------------------------
+  REQUIRE STYLES
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+@require 'jeet'
+@require 'prefix-free'
+
+/*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  RESPONSIVE LAYOUT
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+breakpoint_xxl     = 1640px
+breakpoint_tablet  = 1000px
+breakpoint_phablet =  640px
+breakpoint_mobile  =  480px
+
+
+/*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  COLORS
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+cityilike_orange    = #FA8824
+cityilike_green     = #9BCA9B
+cityilike_darkcyan  = #008b8b
+cityilike_white     = #fff
+cityilike_black     = #111
+cityilike_grey      = #444
+cityilike_lightgrey = #D3D9E5
+cityilike_white     = #f9f9f9
+cityilike_shadow    = #999
+cityilike_lightorange = #e7a565
+cityilike_lightpurple = #ad8aca
+cityilike_lightgreen  = #8bbf7f
+cityilike_lightblue   = #88bed4
+
+
+/*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  FONTS
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+@font-face {
+    font-family: 'timelessbold';
+    src: url('/font/timeless-bold-webfont.eot');
+    src: url('/font/timeless-bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/font/timeless-bold-webfont.woff') format('woff'),
+         url('/font/timeless-bold-webfont.ttf') format('truetype'),
+         url('/font/timeless-bold-webfont.svg#timelessbold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'timelessregular';
+    src: url('/font/timeless-webfont.eot');
+    src: url('/font/timeless-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/font/timeless-webfont.woff') format('woff'),
+         url('/font/timeless-webfont.ttf') format('truetype'),
+         url('/font/timeless-webfont.svg#timelessregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+// cityilike_mainfont = 'timelessregular'
+// cityilike_mainfont = 'timelessbold'
+cityilike_mainfont = 'Ubuntu'
+
+
+/*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  MIXINS
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+cf()
+  *zoom: 1
+  &:before, &:after
+    content: ''
+    display: table
+    clear: both
+
+radius(r)
+
+circle(width = 110px)
+  top           -45px
+  left          30px
+  width         width
+  height        width
+  border        0px solid cityilike_white
+  border-radius 50%
+  transition    box-shadow .2s
+//  box-shadow          : 0 0 10px rgba(0, 0, 4, 0.5);
+//  -webkit-box-shadow  : 0 0 10px rgba(0, 0, 4, 0.5);
+//  -moz-box-shadow     : 0 0 10px rgba(0, 0, 4, 0.5);
+
+circle_left()
+  position      relative
+  display       block
+  float         left
+  margin-top    2px
+  margin-right  40px
+  padding       5px
+  background    cityilike_white
+
+transition(speed = 300ms, style = ease-in-out)
+  -webkit-transition all speed style
+  -moz-transition all speed style
+  -ms-transition all speed style
+  -o-transition all speed style
+  transition all speed style
+
+linkstyle(normal = cityilike_white, hover = cityilike_orange, shadow = cityilike_orange)
+  color normal
+  transition()
+  &:hover
+    text-decoration none
+    color hover
+    text-shadow 0 0 5px shadow
+  &:focus
+    text-decoration none
+    color hover
+    text-shadow 0 0 2px shadow
+    outline none
+
+addIcon(content)
+  &:before
+    content content
+    vertical-align top
+    padding-right 8px
+    font-size 2em
+
+tagstyling(color = cityilike_lightgrey)
+  background-color color
+  padding 5px
+  margin-right 5px
+  border-radius 5px
+
+exactCenter(width = 200px, height=200px)
+  width       width
+  height      height
+  position    fixed
+  top         50%
+  left        50%
+  margin-top  -100px
+  margin-left -100px
+
+horizontalCenter() // IE8+ div in div center
+  display     table
+  margin      0px auto
+
+
+/*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  BASIC ELEMENTS
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6
+  font-family cityilike_mainfont
+  
+body
+  background-color cityilike_white
+
+#header_logo_link_image
+  height 46px
+  width auto
+
+#footer
+  position relative
+  top -70px
+
+strong
+  font-weight bold
+
+em
+  font-style italic
+
+
+/*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  PRIMARY NAVBAR
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+#mainnav
+  height 50px
+  background-color #000
+  opacity 0.5
+#header_logo
+  position fixed
+  top 0
+  z-index 800
+  width 100%
+  text-align center
+.avatar
+  circle(50px)
+
+
+/*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  USE ABOVE FOR BELOW
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+@import 'places'
+@import 'place'

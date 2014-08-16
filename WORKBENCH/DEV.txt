@@ -1,22 +1,37 @@
-DEV
+=======
+NPM LINKING
 
-NPM USAGE
-http://www.devthought.com/2012/02/17/npm-tricks/
+$ cd moduleA/
+$ npm link
+$ cd ../moduleB
+
+# if moduleB package.json is pointing to a yet-unpublished
+# version of moduleA, npm install will fail:
+$ npm install
+
+# this will install your local version of moduleA
+$ npm link moduleA
+
+# since moduleA is now installed, npm install will ignore it:
+$ npm install
+
+# if you want to see all installed dependencies, use
+$ npm ls
+
+# to remove a linked package from a (moduleB)s dependencies
+$ npm unlink moduleA
+
+# to remove a linked package from all modules that have it as dependency
+$ cd moduleA
+$ npm unlink
 
 
 
 =======
-NPM INSTALL DEPS
-* npm install --save git://github.com/coding-amigos/holon#v0.0.2
-
-
-=======
-http://learnjs.io/blog/2014/03/17/using-browserify-with-rails/
-For "live reload" browserify workflow
-
-=======
-NPM LINK
-Developing a sub-module concurrently with a parent module can be cumbersome. Oftentimes you do not want to have to push/publish a new version to test a child module in a parent module. This can be easily solved with npm link. If your child module is checked out in the same directory you can simply npm link ../child-module and it will create suitable symlinks for you.
+NPM STUFF
+http://blog.izs.me/post/1675072029/10-cool-things-you-probably-didnt-realize-npm-could-do
+http://browsenpm.org/help
+http://blog.nodejitsu.com/npm-cheatsheet/?utm_source=feweekly&utm_campaign=issue0&utm_medium=web
 
 =======
 Dependency Watching

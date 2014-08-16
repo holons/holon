@@ -1,0 +1,106 @@
+
+.namespace { 
+        &-ComponentName{
+            width: 100%;
+            &_ModifierName {
+                color: hotpink;
+                &-variant-label {
+                        color: pink;
+                }
+            }
+        }
+}
+
+
+
+// .namespace
+// width: 100%
+
+// &__block
+// width: hotpink
+
+// &–modifier
+// width: pink
+
+
+// @at-root
+// for stylus??
+
+
+.namespace {
+	&-ComponentName {
+		width: 100%;
+			&_ModifierName {
+				color: hotpink;
+				&-variant-label {
+					color: pink;
+				}
+			}
+		}
+	}
+}
+
+// will compile to
+
+.namespace-ComponentName {
+	width: 100%;
+}
+.namespace-ComponentName_ModifierName {
+	color: hotpink;
+}
+.namespace-ComponentName_ModifierName-variant-label {
+	color: pink;
+}
+
+// without any nesting. Same as .one { &.two {} } compiles to .one.two {} and not .one .one.two{}
+
+
+.namespace {
+  &-ComponentName {
+    width: 100%;
+    &__ModifierName {
+      color: hotpink;
+      &-variant-label {
+        color: pink;
+      }
+    }
+  }
+}
+
+
+/* Component */
+.Button { }
+
+/* Component */
+.ButtonGroup { }
+
+/* Component Modifier */
+.Button--primary { }
+
+/* Component Child */
+.ButtonGroup-item { }
+
+/* CSS NameSpacing */
+
+.ns-UtilityName { }
+.ns-ComponentName { }
+.ns-ComponentName-childName { }
+.ns-ComponentName--modifier { }
+
+._ComponentName-childName--modifier { }
+
+.widget-ComponentName__childName--modifier { }
+
+<!-- HTML -->
+<article class="twt-Tweet twt-Tweet--alt">
+  <div class="twt-Tweet-body">
+    <p class="util-Mute"> ... </p>
+  </div>
+</article>
+
+
+////////////////////
+
+tl;dr Keep using agnostic, abstract, OOCSS classes in your markup, but add any desired meaning to your HTML
+via a data-ui-component attribute, e.g.: <ul class="ui-list" data-ui-component="users-list">.
+

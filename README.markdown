@@ -94,7 +94,11 @@ There is more jobs in the source code marked with `// @TODO: <job description>` 
 * __@TODO:__ Add CHANGELOG File
 * __@TODO:__ This section should instead list all the TODO-Branches currently available + a link to the "TODO Description file in that branch"
   * The README.markdown in that branch could list the description under the "jobs section"
-* __@TODO:__ add http://www.wolfe.id.au/2014/02/01/getting-a-new-node-project-started-with-npm/ workflow
+* __@TODO:__ add workflow description
+  * http://www.wolfe.id.au/2014/02/01/getting-a-new-node-project-started-with-npm/ 
+  * http://quickleft.com/blog/creating-and-publishing-a-node-js-module
+  * http://www.devthought.com/2012/02/17/npm-tricks/
+
 __☠☠☠ section is under construction ☠☠☠__
 
 

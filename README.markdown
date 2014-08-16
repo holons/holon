@@ -136,7 +136,7 @@ repository
 2. __`./DEMO`__
   * Contains a file that demonstrate how to use this component in your project
 3. __`./DEPENDENCIES`__
-  * Contains all dependencies used by this component, but not yet published to their own repositories
+  * Contains all internal dependencies used by this component, but not yet published to their own repositories
 4. __`./RELEASE`__
   * Contains production ready versions of this component which are used by examples in `./DEMO`
   * __CDNs:__ `v0.0.3@git`, `v0.0.2@npm`, `v0.0.2@bower`

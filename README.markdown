@@ -94,7 +94,7 @@ There is more jobs in the source code marked with `// @TODO: <job description>` 
 * __@TODO:__ Add CHANGELOG File
 * __@TODO:__ This section should instead list all the TODO-Branches currently available + a link to the "TODO Description file in that branch"
   * The README.markdown in that branch could list the description under the "jobs section"
-
+* __@TODO:__ add http://www.wolfe.id.au/2014/02/01/getting-a-new-node-project-started-with-npm/ workflow
 __☠☠☠ section is under construction ☠☠☠__
 
 
@@ -115,7 +115,7 @@ contribute
 * `npm update`
 * `stylus -u jeet -u nib -rupture -w holon.styl`
 * load main HTML project file by opening and pointing your browser to:
-  * a server that serves the `./DEMO/dev.html` file _(e.g. localhost:3000/DEMO/dev.html)-
+  * a server that serves the `./DEMO/dev.html` file _(e.g. localhost:3000/DEMO/dev.html)_
   * or doubleclick `./DEMO/dev.html` file to open it directly in your browser
     * __HINT:__ this only works with CORS disabled. In order to do so:
       * mac osx `open -a Google\ Chrome --args --disable-web-security`

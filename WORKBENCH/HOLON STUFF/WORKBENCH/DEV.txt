@@ -3,6 +3,13 @@ DEV
 NPM USAGE
 http://www.devthought.com/2012/02/17/npm-tricks/
 
+
+
+=======
+NPM INSTALL DEPS
+* npm install --save git://github.com/coding-amigos/holon#v0.0.2
+
+
 =======
 http://learnjs.io/blog/2014/03/17/using-browserify-with-rails/
 For "live reload" browserify workflow

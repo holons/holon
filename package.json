@@ -26,7 +26,7 @@
     "jobs": "#list jobs + description on how to start working on one + how to stop development",
     "develop": "#checkout job branch + stylus & watch & testem + how to stop development",
     "deploy": "#build + run all tests + git push if successful",
-    "release": "#build, test all + if successful: semver + push with tags + npm publish, bower publish, ....",
+    "release": "#build, test all + if successful: semver + push with tags + npm publish, bower register, ....",
     "build": "node node_modules/browserify/bin/cmd.js SOURCE/index.js -o RELEASE/index.v$(cat package.json | grep version | grep -Po '(?<=version\": \").*(?=\")').bundle.js",
     "watch": "node node_modules/watchify/bin/cmd.js SOURCE/index.js -o RELEASE/index.v$(cat package.json | grep version | grep -Po '(?<=version\": \").*(?=\")').bundle.js",
     "start": "npm run watch #@TODO: Add startup of testem"

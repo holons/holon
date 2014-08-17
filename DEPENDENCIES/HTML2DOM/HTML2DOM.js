@@ -1,6 +1,8 @@
 function HTML2DOM (htmlString) {
   return Test()(htmlString); // https://github.com/component/domify
 }
+// https://github.com/component/domify/blob/master/index.js
+
 function Test () { // alternative zu NPMs 'domify' module
 
   /**

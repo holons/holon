@@ -1,0 +1,94 @@
+// e.g.
+
+app/
+├── css
+│   └── main.css
+├── js
+│   ├── main.js
+│   └── jquery.js
+├── images
+│   └── logo.png
+├── index.html
+└── favicon.ico
+
+
+
+
+/////////////////////////////////////////////////////////////
+
+// UBER-NGEN - https://github.com/uber/uber-ngen
+
+
+TEMPLATE EXAMPLES
+1. https://github.com/demetriusj/ngen-basicexample
+2. https://github.com/Raynos/ngen/tree/master/templates/raynos
+3. https://github.com/dead-horse/ngen/tree/master/templates
+4. https://github.com/Raynos/ngen/tree/colingo/templates
+
+
+
+// TEMPLATE STRUCTURE
+./my-template           // 
+    content/*           // skeleton directory for this template
+    index.js            // defines all {{variable}}s available for use with 'content folder' during SUBSTITUTION PHASE
+
+// with e.g.
+// can use {{variable}} in filenames
+// can use {{variable}} in file contents
+
+./content               // 
+    index.js            //  
+    README.md           // 
+    package.json        // 
+    test/               // 
+        {{project}}.js  // 
+
+e.g.
+module.exports = {                                  // all properties will be asked/evaluated in order listed below this line
+    project: 'Project name: ',                      // <string> is used to prompt user for CLI input value for 'project' variable
+    year: function (values, callback) {             // <function> all user CLI input values -> callback 1st err, 2nd for 'year' value
+        callback(null, new Date().getFullYear())    // 
+    }                                               // 
+};                                                  // 
+
+// RESULT
+e.g. "console.log('{{name}}');"
+e.g. {{name}}.js
+e.g.
+./content/{{name}}.js -> your_new_project/fooman.js console.log('{{name}}'); -> console.log('fooman');
+
+// CONVENTIONS - for generator naming
+// 'ngen-somthing' for example, if you have a template for connect it would be ngen-connect.
+// Just rememeber to make "Main module/entry point" index.js.
+
+
+////// CALL DIRECTLY 2 create a CUSTOM UBER-NGEN
+var ngen = require('uber-ngen/bin/ngen.js')
+ngen({
+    directory: '/directory/to/template',
+    template: 'name-of-template',
+    name: 'name of new project'
+}, function (err) {
+    /* finished scaffolding. */
+    /* will write new project to `process.cwd()/{options.name}` */
+})
+
+// update JSON - You can pass an update-json boolean to Template i.e.
+var t = Template(name, { "update-json": true })
+// Or
+uber-ngen --update-json=true
+
+// Normally the scaffolder will not overwrite existing files in the destination folder.
+// If you set --update-json to true, the scaffolder will overwrite existing JSON files in the destination folder.
+// The way it overwrites is by merging the new version of the JSON file from the scaffolder into the destination folder.
+// It is not recommended you commit these new JSON files, the scaffolder will probably have overwritten
+// or deleted JSON fields you wanted to keep. It's recommended you use git add -p to cherry pick the
+// new changes you want from the scaffolder.
+
+
+$ npm adduser
+$ npm init
+$ npm publish
+// or
+$ npm init
+$ npm link

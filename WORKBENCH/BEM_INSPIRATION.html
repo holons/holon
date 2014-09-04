@@ -25,6 +25,33 @@ BELOW: From 22.6.2014 - 16:20
 <link rel="stylesheet" type="text/css" href="stylus.css">
 
 
+
+https://github.com/bjankord/CSS-Components-Modifiers-And-Subcomponents-Collection
+
+I like this naming convention as well, though I like the double dash for modifiers.
+
+Another naming convention I've thought about similar to the one above looks like:
+
+.module {...}
+.module--modifier {...}
+.module-component {...} /* Single dash instead of underscores */
+.module-component--modifier {...} 
+
+.product-rating {...}
+.product-rating--modifier {...}
+.product-rating-label {...}
+The issue I see with this is it is hard to see the difference between modules and components when module names are made up of multiple words like product rating.
+
+product-rating {...} /* Module */
+product-rating-label /* Component with single dash. Harder to understand label is component of product rating. */
+product-rating__label /* Component with double underscores. Easier to understand */
+One way to get around this would be to use camelCase for module names and not use dashes in module names, only for modifiers (double) and components (single)
+
+.productRating {...}
+.productRating-label {...}
+.productRating--modifier {...}
+
+
 <!--
 BELOW: From 22.6.2014 - 16:00
           + 14.8.2014 - 15:48

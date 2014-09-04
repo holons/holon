@@ -1,6 +1,6 @@
 {
   "name": "holon",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Leight-weight DSL-free dual-side composable reactive components",
   "main": "SOURCE/index.js",
   "homepage": "https://github.com/coding-amigos/holon",
@@ -22,14 +22,49 @@
     "serapath <dev@serapath.de> (http://www.github.com/serapath)"
   ],
   "scripts": {
-    "help": "#describe all npm tasks",
+    "todo": "http://browsenpm.org/package.json",
+    "todo2": "https://www.npmjs.org/doc/files/package.json.html",
+    "help": "#describe all npm tasks - http://anders.janmyr.com/2014/03/running-scripts-with-npm.html + http://substack.net/task_automation_with_npm_run",
     "jobs": "#list jobs + description on how to start working on one + how to stop development",
     "develop": "#checkout job branch + stylus & watch & testem + how to stop development",
-    "deploy": "#build + run all tests + git push if successful",
-    "release": "#build, test all + if successful: semver + push with tags + npm publish, bower register, ....",
-    "build": "node node_modules/browserify/bin/cmd.js SOURCE/index.js -o RELEASE/index.v$(cat package.json | grep version | grep -Po '(?<=version\": \").*(?=\")').bundle.js",
-    "watch": "node node_modules/watchify/bin/cmd.js SOURCE/index.js -o RELEASE/index.v$(cat package.json | grep version | grep -Po '(?<=version\": \").*(?=\")').bundle.js",
-    "start": "npm run watch #@TODO: Add startup of testem"
+    "deploy": "#build + run all tests + git push if successful AND ... what about docker???",
+    "release": "#build through browserify, test all + if successful: uglify + semver + push with tags + NOT npm publish, bower register, ....",
+    "test": "echo \"Error: no test specified\" && exit 1 #run testem",
+    "spec": "npm run test",
+    "uglify": "#https://github.com/hughsk/uglifyify",
+    "stuff": "#echo v$(cat package.json | grep version | grep -Po '(?<=version\": \").*(?=\")'), npm run serve, npm run spec",
+
+    "start": "node_modules/atomify/bin/atomify.js"
+  },
+  "atomify": {
+    "server": {
+      "port": 1337,
+      "open": true,
+      "url": "http://localhost:1337/index.html",
+      "lr": {
+        "verbose": true,
+        "quiet": false,
+        "patterns": [],
+        "port": 3000,
+        "sync": {
+          "clicks": false,
+          "location": false,
+          "forms": false,
+          "scroll": false
+        }
+      }
+    },
+    "js": {
+      "entry": "SOURCE/index.js",
+      "alias": "RELEASE/LIBRARY.bundle.js",
+      "output": "RELEASE/LIBRARY.bundle.js",
+      "debug": true,
+      "transforms": [],
+      "standalone": "LIBRARY"
+    }
+  },
+  "engines": {
+    "node": ">= 0.10.25"
   },
   "repository": {
     "type": "git",
@@ -38,12 +73,17 @@
   "bugs": {
     "url": "https://github.com/coding-amigos/holon/issues"
   },
+  "licenses": [{
+    "type": "CC0",
+    "url": "http://creativecommons.org/publicdomain/zero/1.0/"
+  }],
   "license": "CC0",
   "dependencies": {
-    "plates": "git://github.com/coding-amigos/plates#v0.4.10"
+    "plates": "git://github.com/coding-amigos/plates#v0.4.11"
   },
   "devDependencies": {
-    "watchify": "^1.0.2",
-    "browserify": "^5.10.0"
-  }
+    "atomify": "^3.2.0"
+  },
+  "optionalDependencies": {},
+  "peerDependencies": {}
 }

@@ -40,7 +40,7 @@
     "server": {
       "port": 1337,
       "open": true,
-      "url": "http://localhost:1337/index.html",
+      "url": "http://localhost:1337/",
       "lr": {
         "verbose": true,
         "quiet": false,
@@ -52,6 +52,14 @@
           "forms": false,
           "scroll": false
         }
+      },
+      "st": {
+        "path": "./",
+        "cache": false,
+        "index": "index.html",
+        "dot": false,
+        "passthrough": false,
+        "gzip": true
       }
     },
     "js": {

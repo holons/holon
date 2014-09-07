@@ -1,6 +1,6 @@
 {
   "name": "holon",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Leight-weight DSL-free dual-side composable reactive components",
   "main": "SOURCE/index.js",
   "homepage": "https://github.com/coding-amigos/holon",
@@ -45,7 +45,7 @@
         "verbose": true,
         "quiet": false,
         "patterns": [],
-        "port": 3000,
+        "port": 31337,
         "sync": {
           "clicks": false,
           "location": false,
@@ -87,7 +87,7 @@
   }],
   "license": "CC0",
   "dependencies": {
-    "plates": "git://github.com/coding-amigos/plates#v0.4.11"
+    "plates": "git://github.com/coding-amigos/plates#v0.4.12"
   },
   "devDependencies": {
     "atomify": "^3.2.0"

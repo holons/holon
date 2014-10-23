@@ -12,7 +12,15 @@ app/
 └── favicon.ico
 
 
+/////////////////////////////////////////////////////
+// npm
 
+when running an npm script entry, npm searches through dependencies for "binaries" first. So catw is not actually a global, it's just that npm automatically adds it to the lookup path when executing commands.
+
+// http://substack.net/task_automation_with_npm_run
+// https://gist.github.com/substack/7819530
+
++ https://github.com/substack/bashful
 
 /////////////////////////////////////////////////////////////
 

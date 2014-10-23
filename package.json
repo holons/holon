@@ -46,12 +46,7 @@
         "quiet": false,
         "patterns": [],
         "port": 31337,
-        "sync": {
-          "clicks": false,
-          "location": false,
-          "forms": false,
-          "scroll": false
-        }
+        "sync": true
       },
       "st": {
         "path": "./",

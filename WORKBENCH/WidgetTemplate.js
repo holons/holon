@@ -1,40 +1,3 @@
-// carousel = function(){
-//    var config = {
-//       CSS:{
-//          classes:{
-//             current:'current',
-//             scrollContainer:'scroll'
-//          },
-//          IDs:{
-//             maincontainer:'carousel'
-//          }
-//       },
-//       labels:{
-//          previous:'back',
-//          next:'next',
-//          auto:'play'
-//       },
-//       settings:{
-//          amount:5,
-//          skin:'blue',
-//          autoplay:false
-//       },
-//    };
-//    function init(){
-//    };
-//    function scroll(){
-//    };
-//    function highlight(){
-//    };
-//    return {config:config,init:init}
-// }();
-
-
-
-// AVOID HEAVY NESTING, by SPECIALIZED TOOL METHODS
-
-
-
 /*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
   COMMONJS MODULE EXPORT                                        (Version 0.0.0)
 
@@ -53,19 +16,13 @@
   /*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
     MODULENAME                                                      (this lego)
   :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
-  (function MODULE_MODULENAME (CONTRACT, ENTITIES, DEPs, window, global, undefined)
+  (function MODULE_MODULENAME (META, ENTITIES, DEPs, window, global, undefined)
   { // to shield MODULE from overriden 'undefined' and global object pollution
     'use strict';
     function MODULENAME_API (
       /*-----------------------------------------------------------------------
         MODULE API
       
-          @TODO: think about what i need here.
-            MODULENAME_API.CONTRACT
-            MODULENAME_API (CONTAINER, SETTINGS, SUGGESTIONS)
-            ....
-
-
           USAGE:
             ...
       \*---------------------------------------------------------------------*/
@@ -112,9 +69,11 @@
           /*-------------------------------------------------------------------
             DEFINE
           -------------------------------------------------------------------*/
-            // START = function START (data, schema, collection, containerQuery) {
-            //   return api; 
-            // }
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// ADD CONTENT HERE
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
           /*-------------------------------------------------------------------
             USER INTERACTION EVENTS & HANDLER
           -------------------------------------------------------------------*/
@@ -126,40 +85,19 @@
           /*-------------------------------------------------------------------
             PUBLIC ENTITY API - SET MODULE ENTITY DEFAULT INTERFACE
           -------------------------------------------------------------------*/
-            api =       {
-              plates    : DEPs.plates,
-              holonize  : {},
-              // START     : function start() {
-              //   var
-              //     DATA          = STATE.params.data,
-              //     SCHEMA        = STATE.params.schema,
-              //     COLLECTION    = STATE.params.collection,
-              //     CONTAINER     = STATE.params.containerID,
-              //     TRANSLATIONS  = STATE.params.translations
-              //   ;
-              //   return START (DATA, TRANSLATIONS, SCHEMA, COLLECTION, CONTAINER);
-              // },
+            api = {
               /*---------------------------------------------------------------
-                CONFIGURE {{MODULENAME}} COMPONENT                        
+                BUILD MODULE                              
               ---------------------------------------------------------------*/
-              CONFIGURE : function configure (params) {
-                if (!params) {
-                  debugger;
-                  // @TODO: think about 'singleton' and 'dropin' here
-                  // @TODO: The component is already initialized on the server
-                  //        CONFIGURE should do nothing and START() should be executed
-                } else {
-                  delete api.CONFIGURE;
-                  STATE.params = params;
-                  /*-------------------------------------------------------------
-                    CUSTOMIZE - module interface, internals & CONFIGURATION
-                  -------------------------------------------------------------*/
-                  // just CONFIGURE something
-                  // or set other api.attributes
-                  // or return something
-                  // or set some global stuff
-                  return api;
-                }
+              init: function initialize (settings) {
+                delete api.init;
+                /*-------------------------------------------------------------
+                  CUSTOMIZE - module interface, internals & initialization
+                -------------------------------------------------------------*/
+                // just initialize something
+                // or set other api.attributes
+                // or return something
+                // or set some global stuff
               }
             }
           ;
@@ -168,42 +106,33 @@
             PUBLIC API EXPORT
 
               @JOB: make INIT/CONFIGURE and START one method with many params
-              @JOB: make module CONFIGURE a constructor option
+              @JOB: make module initialization a constructor option
               
           -------------------------------------------------------------------*/
-          // [Optional] CONFIGURE this module immediately
-          api.CONFIGURE({}); // provide optional settings argument
+          // [Optional] initialize this module immediately
+          api.init({}); // provide optional settings argument
           return ENTITIES[api.id-1];
         })({})
       ;
-      MODULE.CONTRACT = CONTRACT;
+      MODULE.META = META;
       return MODULE;
     }
-    MODULENAME_API.CONTRACT = CONTRACT;
+    MODULENAME_API.META = META;
     return MODULENAME_API;
   })(
   /*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
     MODULE CONTEXT
   :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
     /*-------------------------------------------------------------------------
-      CONTRACT
+      META
 
       @JOB - http://www.2ality.com/2012/10/javascript-properties.html
         (use to create the stuff below)
 
     -------------------------------------------------------------------------*/
     {
-      NAME      : require('../package.json').name,
-      VERSION   : 'v' + require('../package.json').version,
-      VALIDATE  : function VALIDATE (params) {
-        // require('./CONTRACT.js')(params);
-        return true;
-      }
-      // generateData  : generateData,
-      // SCHEMA        : SCHEMA,
-      // getTypes      : getTypes,
-      // getValidators : getValidators,
-      // getSamples    : getSamples
+      NAME    : require('../package.json').name.toUpperCase(),
+      VERSION : 'v' + require('../package.json').version,
     },
     /*-------------------------------------------------------------------------
       SET OF MODULE INSTANCES - only 1 if singleton
@@ -225,7 +154,7 @@
         /*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
           EXTERNAL DEPENDENCIES                                  (others legos)
         :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
-        plates : require('plates'),
+          // none
         /*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
           INTERNAL DEPENDENCIES                                      (my legos)
         :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/

@@ -17,10 +17,13 @@ holon
 =====
 [[back to top](#table-of-content)]
 
+[ ![Codeship Status for coding-amigos/holon](https://www.codeship.io/projects/5e83d670-3d10-0132-4da6-622d80cfe64c/status)](https://www.codeship.io/projects/43168)
+
 Leight-weight DSL-free dual-side composable reactive components
 ![holon](https://raw.github.com/coding-amigos/holon/master/holon.png)
 
-
+If you want to find __holons__, search [npmjs.org](http://www.npmjs.org) for
+`ecosystem:holon` or browse [holons](https://www.npmjs.com/browse/keyword/holon)
 
 
 demo
@@ -95,7 +98,7 @@ There is more jobs in the source code marked with `// @TODO: <job description>` 
 * __@TODO:__ This section should instead list all the TODO-Branches currently available + a link to the "TODO Description file in that branch"
   * The README.markdown in that branch could list the description under the "jobs section"
 * __@TODO:__ add workflow description
-  * http://www.wolfe.id.au/2014/02/01/getting-a-new-node-project-started-with-npm/ 
+  * http://www.wolfe.id.au/2014/02/01/getting-a-new-node-project-started-with-npm/
   * http://quickleft.com/blog/creating-and-publishing-a-node-js-module
   * http://www.devthought.com/2012/02/17/npm-tricks/
 * __@TODO:__ find convention for branch names, e.g. {CA-1}{SPIKE}{jeet.gs} and COMMIT NAMES

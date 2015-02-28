@@ -1,188 +1,3 @@
-<!--
-BELOW: From 22.6.2014 - 16:20
-
-  COMPONENTS have only an attribute for all: TRIGGERED EVENTS
-
-  => Wiring up different Components then happens in the "config" of an APP
-      by "Listening" for those "Events" + checking eventual "Target" & "Target.id" and then
-      invoking the API of the component that wants to REACT on an event
--->
-
-<!--:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-::::  @TODO: EVOLVE this into LIVE STYLEGUIDE
-::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::-->
-<style>
-  // BEMIFY - use below for MULTI-STATE
-
-  [rel|=external] {
-    // attribute 'external' is within Dash Separated List
-  }
-</style>
-<h1 rel="friend-external-sandwich">Attribute Dash Separated</h1>
-<!--:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-::::  STYLE
-::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::-->
-<link rel="stylesheet" type="text/css" href="stylus.css">
-
-
-
-https://github.com/bjankord/CSS-Components-Modifiers-And-Subcomponents-Collection
-
-I like this naming convention as well, though I like the double dash for modifiers.
-
-Another naming convention I've thought about similar to the one above looks like:
-
-.module {...}
-.module--modifier {...}
-.module-component {...} /* Single dash instead of underscores */
-.module-component--modifier {...} 
-
-.product-rating {...}
-.product-rating--modifier {...}
-.product-rating-label {...}
-The issue I see with this is it is hard to see the difference between modules and components when module names are made up of multiple words like product rating.
-
-product-rating {...} /* Module */
-product-rating-label /* Component with single dash. Harder to understand label is component of product rating. */
-product-rating__label /* Component with double underscores. Easier to understand */
-One way to get around this would be to use camelCase for module names and not use dashes in module names, only for modifiers (double) and components (single)
-
-.productRating {...}
-.productRating-label {...}
-.productRating--modifier {...}
-
-
-<!--
-BELOW: From 22.6.2014 - 16:00
-          + 14.8.2014 - 15:48
--->
-<!--:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-    TEMPLATES
-
-            +data-template
-            +data-style
-            +data-script
-
-            +data-bind
-
-            data-url
-            data-json
-            data-schema
-            data-collection
-
-            data-clone
-            data-model
-            data-source
-            data-attribute
-            data-field
-            data-property
-            data-param
-            data-argument
-            data-event
-            data-trigger
-            data-emit
-            data-listen
-::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::-->
-
-
-      <div
-        data-template       ='/v0.0.1/api/components/Dynatable.template.html'
-        data-style          ='/v0.0.1/api/components/Dynatable.css'
-        data-script         ='/v0.0.1/api/components/Dynatable.js'
-
-        class='
-          Dynatable
-          Dynatable--CONTEXT=none
-          Dynatable--STATE=normal
-          Dynatable--VARIANT=default
-        '
-
-
-        data-url        =''
-        data-json       =''
-        data-schema     =''
-        data-collection =''
-
-        data-brainstorm-event-receive='object:predicate:subject'
-        data-brainstorm-event-trigger='object:predicate:subject'
-
-        // event.target contains ORIGIN
-        // listen only to broadcastet events which are registered for
-
-
-        data-js-api-methods     ='create-read-update-delete'
-        data-events=['CREATE', 'READ', 'UPDATE', 'DELETE']
-
-        data-event-api          ='response:item'
-        data-channel-item-event ='response:item'
-        data-channel-item-value ='{name:"hans"}'
-
-        data-api-interface  ='FAVOURITE'
-        data-api-events     ='FAVOURITE'
-
-        data-api ='
-          response:item
-          followMe
-          follow:target
-          ignoreMe
-          ignore:target
-          register:target
-          unregister:target
-        '
-        data-events ='
-          request:data
-          followMe
-          follow:target
-          ignoreMe
-          ignore:target
-          register:target
-          unregister:target
-        '
-      >
-        <!--::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::-->
-        <div
-          class="Dynatable__actionbar"
-        >
-          
-        </div>
-        <div
-          class="Dynatable__headerbar"
-        >
-          
-        </div>
-        <div
-          class="Dynatable__content"
-        >
-          
-        </div>
-        <!--::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::-->
-        <div class='Dynatable__menu'>
-          <button class='Dynatable__createItem'> New Item </button>
-          <div class='Dynatable__search'></div>
-          <div class='Dynatable__paginator'></div>
-        </div>
-        <table>
-          <thead>
-            <tr
-              class='
-                Dynatable__header
-              '
-            >
-              <th
-                class='
-                  Dynatable__titleCell
-                '
-                data-template='Dynatable__titleCell'
-              ></th>
-            </tr>
-          </thead>
-          <tbody>
-          </tbody>
-        </table>
-        <!--::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::-->
-      </div>
-
-<script>
 // EVENT
 // http://www.2ality.com/2013/06/triggering-events.html
 // https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent
@@ -196,11 +11,6 @@ var event = new CustomEvent("cat", {"detail":{"hazcheeseburger":true}});
 obj.dispatchEvent(event);
 
 
-
-
-/////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////
 // click="player:move"
 // player: category (subject/noun) ... or maybe "COMPONENT" ?
 // Any app-wide 'move' listener can read it from the event.category property.
@@ -221,22 +31,16 @@ obj.dispatchEvent(event);
 
   window.CustomEvent = CustomEvent;
 })();
-//////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////
-</script>
 
 
+// <events
+//   data-test="function1"
+//   data-test-params="param1 param2 param3"
+//   data-print="function2"
+//   data-print-params="param1 param2"
+// >
+// </events>
 
-
-
-<events
-  data-test="function1"
-  data-test-params="param1 param2 param3"
-  data-print="function2"
-  data-print-params="param1 param2"
->
-</events>
-<script>
   EVENT BUS = MESSAGE BROKER
   http://en.wikipedia.org/wiki/Data_distribution_service
   // Most Data Distribution Service (DDS) do not use a broker in the middle. Instead, each publisher and subscriber in the pub/sub system shares meta-data about each other. The publisher and the subscribers cache this information locally and route messages based on the discovery of each other in the shared cognizance.
@@ -266,10 +70,11 @@ obj.dispatchEvent(event);
   http://patterns.instantinterfaces.nl/current/Refactoring-and-Design-Patterns-PAT-OBS.html
   http://patterns.instantinterfaces.nl/current/Refactoring-and-Design-Patterns-PAT-EVTS-BAS.html
 
-</script>
 
 
-<script>
+
+
+
 // http://tech.pro/blog/1402/five-patterns-to-help-you-tame-asynchronous-javascript
 //1. What if we don't want to keep passing a callback each time we invoke the target method?
 //2. What if we wanted our own callback to be invoked if another piece of calling code also invoked the target method?
@@ -281,14 +86,7 @@ obj.dispatchEvent(event);
 // - JavaScript implementations of this pattern usually involve subscriber callback method signatures
 //    of 0-n arguments (in other words, every event could have a different signature).
 
-</script>
 
-
-
-
-
-
-<script>
 ///////////////////////////////////////////////
 // PUSH - OPT OUT
 broadcast -> received by all
@@ -314,7 +112,7 @@ The Observer pattern is used when an action taken on one class (the observed cla
 //// MEDIATOR PATTERN
 // Bus System Like Communication
 
-The Mediator pattern is an encapsulation of a pattern of usage of a set of objects. Client code is only coupled to the mediator, instead of being coupled to multiple other classes. 
+The Mediator pattern is an encapsulation of a pattern of usage of a set of objects. Client code is only coupled to the mediator, instead of being coupled to multiple other classes.
 
 // Why don’t we call an event aggregator a mediator?
 // The answer largely comes down to where the application logic and workflow is coded.
@@ -385,5 +183,5 @@ In order to understand mediator, I find it easier when you consider Facade first
 Mediator: Same as Facade, except that it combines the functionality of all of the aggregate classes to produce new functionality. (Good explanation here)
 
 
-//// 
+////
 </script>

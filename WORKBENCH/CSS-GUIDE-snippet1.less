@@ -1,0 +1,65 @@
+////////////////////////
+// STUFF
+I cant believe using this without a templating description (Block context)
+you feed with data (to display Elements) and arguments (for Modifiers).
+like, for example, --shape-portrait, --shape-landscape, --state-highlighted, etc...
+
+/* Callout Module with State */
+.callout.is-collapsed { }
+
+
+// 1. “single-class”
+.btn, .btn-primary { /* button template styles */ }
+.btn-primary { /* styles specific to save button */ }
+<button class="btn">Default</button>
+<button class="btn-primary">Login</button>
+
+/*
+If you use a pre-processor, you might use Sass’s @extend functionality to reduce some of the maintenance work
+involved in using the “single-class” pattern. However, even with the help of a pre-processor, my preference is
+to use the “multi-class” pattern and add modifier classes in the HTML.
+*/
+
+// 2. “multi-class” patterns.
+.btn { /* button template styles */ }
+.btn-primary { /* styles specific to primary button */ }
+<button class="btn">Default</button>
+<button class="btn btn-primary">Login</button>
+
+/*
+For example, take the base btn component and add a further 5 types of button and 3 additional sizes.
+Using a “multi-class” pattern you end up with 9 classes that can be mixed-and-matched.
+Using a “single-class” pattern you end up with 24 classes.
+*/
+
+// It is also easier to make contextual tweaks to a component, if absolutely necessary.
+// You might want to make small adjustments to any btn that appears within another component.
+
+/* "multi-class" adjustment */
+.thing .btn { /* adjustments */ }
+
+/* "single-class" adjustment */
+.thing .btn,
+.thing .btn-primary,
+.thing .btn-danger,
+.thing .btn-etc { /* adjustments */ }
+
+
+////
+/* Utility */
+.u-utilityName {}
+/* State-utility */
+.u-isStateName {}
+/* Component */
+.ComponentName {}
+/* Component modifier */
+.ComponentName--modifierName {}
+/* Component descendant */
+.ComponentName-descendant {}
+/* Component descendant modifier */
+.ComponentName-descendant--modifierName {}
+/* Component state (scoped to component) */
+.ComponentName.is-stateOfComponent {}
+/* Component mixin (ancestor style dependencies) */
+.with-ComponentName {}
+

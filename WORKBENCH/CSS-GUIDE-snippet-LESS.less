@@ -1,0 +1,40 @@
+/////////////////////////////////////////////
+// LESS Specific
+Never nest rules purely for code organization. Only nest when the outputted CSS is what you want.
+Never use a mixin if you’re not passing an argument. Mixins without arguments are much better used as templates which can be extended.
+Never use @extend on a selector that isn’t a single class. It doesn’t make sense from a design perspective and it bloats the compiled CSS.
+Never use @extend for UI components in component modifier rules because you lose the inheritance chain (more on this in a bit).
+// The best parts of preprocessors are functions like @extend and %placeholder. 
+
+.modal {
+  @extend %dialog;
+  @extend %drop-shadow;
+  @extend %statically-centered;
+  /* other modal styles */
+}
+
+.modal__close {
+  @extend %dialog__close;
+  /* other close button styles */
+}
+
+.modal__header {
+  @extend %background-gradient;
+  /* other modal header styles */
+}
+
+// Declare @extend followed by @include statements first in a declaration block. (Borrowed from Idiomatic CSS)
+/* Good */
+.stubbornella {
+    @extend .company;
+    @include font-size(14);
+    color: #555;
+    font-size: 11px;
+}
+
+// FONTS
+/* Good */
+.stubbornella {
+   font-size: 14px; /* pixel fall back rule should come first */
+   font-size: 1.4rem;
+}

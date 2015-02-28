@@ -1,0 +1,1315 @@
+/*------------------------------------*\
+ *
+ * @name      Simple name for the file (i.e., Search_Widget)
+ * @author    username
+ * @tested    browsers
+ * @requires  helpers.css
+ *            utility.css
+ *
+ * @title     0. $CONTENTS
+ * @desc      Table of Contents/Sections - Description of the file.
+ *            Lists 'File Sections' OR 'Includes' [in case of multiple files]
+ *            This is a longer description of the comment, describing the code in more
+ *            detail. We limit these lines to a maximum of 80 characters in length.
+ *
+ *            We do not prefix lines of code with an asterisk as to do so would inhibit
+ *            copy and paste. We can have markup or code in the comments,
+ *            and are encouraged to do so:
+   <div class=foo>
+       <p>Lorem</p>
+   </div>
+ *            A well ordered stylesheet will be ordered something like this
+ *            0.  CONTENTS............You’re reading it!
+ *            1.  GOALS.....
+ *                // SMACSS
+ *            2.  RESET_DOCUMENT...............Set our reset defaults - e.g normalize.css
+ *            3.  BASE................Set your branded Base
+ *            3a. FONT_FACE...........Import brand font files
+ *            3b. LAYOUT..............
+ *                // BEM
+ *            4.  MODULES/BLOCKS/COMPONENTS/WIDGETS...
+ *                // SMACSS
+ *            5.  STATE...
+ *            6.  THEME...
+ *                // SMACSS Addition
+ *            7.  JS_HOOKS...
+ *            8.  DETECTION...
+ *            9.  TESTING...
+\*------------------------------------*/
+
+// https://github.com/ginatrapani/ThinkUp/wiki/Code-Style-Guide:-CSS
+
+////////// SOURCES //////////
+// 1. Using OOCSS we reduce coupling by dropping descendent selectors in favor of classes.
+//    http://oocss.org/
+// 2. With a DRY CSS approach we’re also using classes,
+//    but here the magic is based more on how we organize our css around stylistic groups.
+// 3. SMACSS falls somewhere in between these approaches.
+// => we should move away from location based selectors as tying css selectors to a specific html structure leads to greater difficulty in changing either html or css.
+//    http://smacss.com/
+// 4. BEM (see further below)
+//    http://bem.info/
+/////////////////////////////
+
+
+
+
+
+//------------------------------------
+//  1. $GOALS - USE CASES - PROBLEMS & SOLUTIONS
+//------------------------------------
+//
+// A Minimal Informative Structure with support for Reuse
+//     DECOUPLING CSS FROM HTML through Five LAYERS / CATEOGRIES & NAMING CONVENTIONS
+//
+// ISSUE-1
+// Being able to navigate the code base quickly is crucial, when
+// a project is long-lived and under constant development.
+//
+// the development team consists of several people, grows and changes
+//- Quick development
+//- Team efficiency
+//
+//- Scalability
+//- Code reuse
+//
+// ROLES (each works in their field interfering with each others work)
+// - Media Designer     - creates a site design in the form of design layout
+//  => Design of the website is developing together with HTML/CSS and changes all the time,
+//     so can change at any time and each other must be ready for this
+// - Web Designer       - create static HTML/CSS pages based on the design layout
+//  => works with 'Web Designer' together on the website codebase, contributing to each others code
+//  => PROBLEM: responsibilities between javascript developers, html/css designers
+//  => SOLUTION: having 'a same set of terms' across different programming and markup languages for better communication
+// - Frontend Developer - creates templates from these static pages and then writes some JavaScript to add behavior/transitions
+//  => might send each other 'events' or 'RESTful API' ...
+// - Backend Developer  - creates serverside logic to provide data to the frontend
+//
+// POSSIBILITY OF ADDITIONAL BENEFITS:
+//   highlevel abstractions
+//   ease of reuse
+//   build production runtime only with used components (project-wise, browser-specific-wise)
+//
+// 1. Fast-to-develop, long-lived projects
+//  It should be possible to develop and launch the first version of a website quickly
+//  with an architecture that helps to maintain it in the long run.
+// 2. Team scalability
+//  Adding new people to a product team should improve speed, not decrease it.
+//  We need to be able to assign new members to a team without a steep learning curve.
+//  Code should be well-structured for a project to remain maintainable over time and team changes.
+// 3. Code reuse
+//  To maintain UI consistency and minimize development effort on typical interface components,
+//  those components have to be easily reusable. The source code should not have contextual dependency on the other code,
+//  it should be easy to move that code to another place.
+
+
+
+
+// 1. Quasi-qualified selectors
+/*html*/.product-page{} // Quasi Qualified Selectors communicate intention
+/*ol*/.breadcrumb{}
+/*p*/.intro{}
+/*ul*/.image-thumbs{}
+
+// = HTML assigns CSS Class to ELEMENTS (different LOOKS -> different CSS classe (different look = different css name in html)
+//   + CSS (look & feel of visual elements regardless of where they appear)
+
+
+
+
+
+//------------------------------------
+//  2. $BASE
+// + reset + document (element selectors = tags)
+//------------------------------------
+  /*(CSS Reset/Normalize + Custom Defaults of Elements
+    => defines default styling (look & feel) of elements
+    => Ground Zero + unclassed div, a, h1, ul etc...
+  e.g. heading sizes, default link styles, default font styles, and body backgrounds.
+     + normalize.css (or similar stuff)
+  - Apply using 'element selectors', 'descendent selectors', 'child selectors' + 'pseudo classes' (:hover, :active, ...)
+  - DONT USE: 'classes', 'ID selectors'
+  */
+body, form { margin: 0; padding: 0; }
+a { color: #039; }
+a:hover { color: #03F; }
+
+
+
+
+
+//------------------------------------
+//  2b. $RESET
+//------------------------------------
+
+
+
+
+
+//------------------------------------
+//  2b. $FONT_FACE
+//------------------------------------
+
+
+
+
+
+/*----------*\
+	3. $LAYOUT - Layout Rules - Major Components
+	Divide the app/page into 'sections'
+  Layouts hold one or more modules together
+  Are applied to layout classes, which are 'containers'
+  => Seperate CONTENT from CONTAINER
+\*----------*/
+.layout-xxx {}
+.layout-grid-xxx {}
+.layout-inline { } // Inline layout
+.layout-header { }
+.layout-primarynav { }
+.layout-maincontent { }
+// e.g. .margin-top {margin-top: 1em;}
+// paddings, margins, gutters
+.layout-header, .layout-article, .layout-footer { width: 960px; margin: auto; }
+.layout-container { width: 960px; margin: auto; }
+.layout-article { border: solid #CCC; border-width: 1px 0 0; }
+.layout-grid { margin: 0; padding: 0; list-style-type: none; }
+.layout-grid > li { display: inline-block; margin: 0 0 10px 10px; }
+.layout-layout-method // e.g. .layout-header { }
+.layout-grid
+<div class="layout-header"></div>
+<div class="layout-primarynav"></div>
+<div class="layout-maincontent"></div>
+
+SURGICAL LAYOUT HELPERS - SMACSS
+.margin-top { margin-top: 8px; }
+.margin-bottom { margin-bottom: 8px; }
+.gutter-left {}
+.gutter-right {}
+
+
+
+/*----------*\
+/////// 4. $MODULE - Component Rules - Button, UIlist, Widget + (class selectors) + module variations based on IDs ///////
+// ALIAS: COMPONENT, WIDGET, BLOCK
+//  MODULEs sit inside "LAYOUT COMPONENTS"
+//  => MINOR COMPONENTs sit inside MAJOR COMPONENTs
+//  => MINOR COMPONENTs sit inside MINOR COMPONENTs
+//  => MINOR COMPONENTs - (Objects & Abstractions, Components - generic, underlying design patterns)
+//
+// e.g. callouts, sidebar sections, product lists, ...
+// e.g. 'navigation bar', 'carousel', 'dialog', 'widget', Tables, icons...
+//
+//  DO use 'class names'
+//  DONT use 'ID selectors', 'Element selectors'
+//
+// Reusable, modular parts of our design - Are standalone visual elements
+// In general, components should define how they look, but not their layout or position.
+// Style HTML Elements (Non-Prefixed Classes for STYLING ONLY!)
+//
+// Don't style PAGES, but style MODULES
+// -> style module library that you can reuse
+//
+// (full components constructed from objects and their extensions)
+// MODULES COMPONENTS = Seperate CONTENT from PRESENTATION by using NAMESPACES
+// SELF CONTAINED MODULES through NAMESPACES
+.component-name // e.g. .button-group { }
+// STRUCTURE Objects (for CONTENT):
+//  Sub-Elements (Member Elements) of Visual Components use MODULEs 'base class name'
+.component-name__sub-object // e.g. .button__icon { } // "STRUCTURE OBJECT"
+// SKIN Extensions (for PRESENTATION):
+//  Modifiers - Variants of Visual Components use MODULEs 'base class name' too and add a 'modifier name'
+//  to it (to express intention).
+//  (better than 'location based selectors', e.g. #sidebar > .navbar, because it can be re-used anywhere)
+.component-name--modifier-name // e.g. .button--primary { } // "SKIN EXTENSION"
+\*----------*/
+
+
+//@@@@@@@@@@@@@@@@@//@@@@@@@@@@@@@@@@@//@@@@@@@@@@@@@@@@@//@@@@@@@@@@@@@@@@@
+///// BEM - Block-Element-Modifier - (collection of ideas and methods, a methodology)
+// => Naming Conventions for CSS Classes
+//  applying BEM in our code enabled
+//  -> understanding a BLOCK by reading the CSS (without knowing what the whole code looks like)
+//  -> understanding a BLOCK by reading the HTML (without knowing what the whole code looks like)
+//  -> understanding a BLOCK by reading the JS (without knowing what the whole code looks like)
+//  -> understanding a BLOCK by reading the FILE STRUCTURE (without knowing what the whole code looks like)
+//  makes much more sense than with any other technique
+
+/*
+It turned out there is a way to make CSS many times faster
+switching to simple selectors and eliminating CSS cascade wherever possible.
+Selectors based on a single classname are quick and browser handles them with ease.
+As soon as all classnames become unique, most rules require a single class query and work way faster.
+
+All Lego blocks were refactored to follow the completely independent blocks restrictions.
+*/
+
+
+// SCENARIO: Many People or often changing people or few people over a long time working on same Project
+// PROBLEM : Linguistic Confusion -> Bugs & Conflicts based on Misconceptions
+// A developer could ask their colleague:
+//  - help with creating the new SEARCH FORM and make it work in Internet Explorer
+// SOLUTION:
+// => NAMING CONVENTIONS - Need to agree on a 'DATA DOMAIN' and use it when naming BLOCKs, ELEMENTs & MODIFIERs
+
+
+// SCENARIO: Peoples limited capacity to think about and take into account the greater picture all the time
+// PROBLEM : Hidden Relations through lack of SCOPE -> lack of context knowledge
+//  A developer solves an issue, but creates new issues through unexpected side effects if the solution
+// SOLUTION:
+// => NAMESPACE SCOPING - Create SCOPE through 'requireJS' or 'css name spacing'
+
+
+// SCENARIO: Big wide-ranging Project creates a large Code Base
+// PROBLEM : Project Size related Chaos -> Increased Search Time for Issue related Code + Redundant Work caused by Wheel Reinvention
+//           => Where is the 'Relevant Code' Located that needs to be changed/imported/duplicated/... ?
+// A manager or customer could ask:
+//  - change color of current MENU ITEM
+//  - make MENUs appearance react on HOVER STATE
+//    http://img-fotki.yandex.ru/get/6728/221798411.0/0_babcb_d1c8832d_M.png
+//    http://img-fotki.yandex.ru/get/9110/221798411.0/0_babca_47ce403c_M.png
+//  - use same BUTTON on another PAGE or PROJECT
+//  - use same FOOTER on all PORTAL SITES
+//  - create new PROJECT using BLOCKS from existing SITES
+//  - create an ORDER PAGE with a WEB FORM as on the PREVIOUS PROJECT
+// SOLUTION: => In big projects, code is much easier to find if it's located in the files of the same name as the block itself
+// => BLOCK CODE GROUPING -> FILE & FOLDER STRUCTURE respects Multilingual Block Nature
+
+
+//@@@@@@@@@@@@@@@@@ NAMING CONVENTIONS @@@@@@@@@@@@@@@@@//
+
+// INTERFACE
+// - can be an APP INTERFACE
+// - can be a WEBPAGE
+
+// CSS SELECTORS
+// - are used in HTML & Template files to define STRUCTURE
+// - are used in CSS files to define APPEARANCE
+// - are used in JavaScript files to apply BEHAVIOR
+// => are a perfect candidate for defining NAMING CONVENTIONs in a INTERFACE
+
+
+//@@@@@@@@@@@@@@@@@ BLOCK (=MODULE) (=COMPONENT) (=WIDGET)
+// 1. has a unique BLOCK NAME (for cross language use [js,html,css,etc...])
+// 2. contains information about itself and its inner workings
+// 3. doesnt contain information about its surrounding context
+// 4. is an independent unique entity (=building block) of a INTERFACE
+// 5. can be present on an INTERFACE multiple times in arbitrary places
+// 6. a INTERFACE can make use of a huge variety different BLOCKS
+// BLOCK NAME (Only instances of the same block can have same names to minimize cascading within INTERFACES)
+//    => 'ID Selectors' in general cannot be used multiple times in a single INTERFACE (see 5.)
+//    => 'HTML Element Selectors' come in a limited variety and are not always context-free (see 6.)
+//    => 'class selectors' satisfy our project-based non-uniqueness requirement and come in unlimited variety
+//       but might be used for more different purposes than 'BLOCK NAMING' alone.
+// ==> Use BLOCK DESCRIPTOR (technically implemented through 'prefixed CSS Class Selectors')
+//         = BLOCK PREFIX + BLOCK NAME
+//
+// BLOCK PREFIX - A CSS Class Name prexix to distinguish it from other CSS Class Name Selectors
+/* e.g. */ prefix_   
+// BLOCK NAME
+/* e.g. */ BlockName
+// BLOCK DESCRIPTOR
+/* e.g. */ dp_BlockName // e.g. a doubleclick friendly abbreviation prefix of the company name
+// EXAMPLE USAGE
+// SIMPLE BLOCK (used on their own)
+// e.g. 'Menu' can be a keyword for the 'Menu Block', 'LoginButton' can be a keyword for the 'Login Button block'.
+/* CSS */         .dp_LoginButton { ... }
+/* JavaScript */  $('dp_LoginButton');
+/* HTML */        <a href='/login' class='dp_LoginButton'></div>
+//
+// If needed, BLOCKS can be categorized to differentiate between different kinds ob BLOCKS
+// This also allows for CATEGORY BASED STYLING if needed
+// e.g.
+// 1. Page specific (class applied on the body element)
+//    - very useful for static pages where maintainability is not at stake
+//    - should be avoided in the application itself (e.g.: p-Homepage).
+'p:' 
+// 2. Layout, columning, wrappers and containers… (e.g.: l-Masthead, l-Footer)
+'l:' 
+// 3. For components (e.g.: c-Dropdown, c-Button…)
+'c:'
+// 4. Utility classes — will probably never change, should never be overridden (e.g.: u-textCenter, u-clearfix…)
+'u:' 
+// 5. Hooks for JavaScript - should never appear in the CSS itself
+//    - often BLOCK NAMEs and ELEMENT NAMEs can be used without any danger
+//    - reduce chance that changing the STRUCTURE or THEME of COMPONENTS will inadvertently
+//      affect any required JavaScript BEHAVIOR and complex functionality
+'js:'
+
+
+//@@@@@@@@@@@@@@@@@ ELEMENT
+// 1. has a unique ELEMENT NAME (for cross language use [js,html,css,etc...])
+// 2. is an atomic part of a block, that performs a certain function
+// 3. can only appear inside its respective blocks (Context-Dependent)
+// 4. can be mandatory or optional, repetetive or unique
+// 5. a BLOCK can make use of a huge variety different ELEMENTs
+// ELEMENT NAME (Only instances of the same Element can have same names to minimize cascading within BLOCKS)
+//    => 'ID Selectors' in general cannot be repetetive in a single BLOCK (see 4.)
+//    => 'HTML Element Selectors' come in a limited variety and are not always context-free (see 5.)
+//    => 'class selectors' satisfy our BLOCK-based non-uniqueness requirement and come in unlimited variety
+//       but might be used for more different purposes than 'ELEMENT NAMING' alone.
+// ==> Use ELEMENT DESCRIPTOR (technically implemented through 'prefixed CSS Class Selectors')
+//         = ELEMENT PREFIX + ELEMENT NAME
+//
+// ELEMENT PREFIX - A CSS Class Name prexix to distinguish it from other CSS Class Name Selectors
+// => Use BLOCK DESCRIPTOR as ELEMENT PREFIX
+// ELEMENT NAME
+/* e.g. */ __elementName
+// ELEMENT DESCRIPTOR
+/* e.g. */ dp_BlockName__elementName
+// EXAMPLE USAGE
+// e.g. each item in a menu is an element item of the menu block.
+/* CSS */         .dp_Menu__menuItem { ... }
+/* JavaScript */  $('dp_Menu__menuItem');
+/* HTML */        <ul class="dp_Menu">
+                    <li class="dp_Menu__menuItem"></li>
+                    <li class="dp_Menu__menuItem"></li>
+                  </ul>
+
+
+////// TODO ///////
+// IF: { }                          => Empty + No Updates
+// IF: { now: '...' }               => Initial State + No Updated
+// IF: { now: '...', update: '...'} => Initial State + Updates Stream from Model
+// IF: { update: '...' }            => Initial State from Model + Updates Stream from Model
+
+// IF: { now: '...', translate: '...' } => Initial State + transformed through translate
+// IF: { now: '...', update: '...', translate: '...' } => Initial State + Updates Stream from Model transformed through translate
+// IF: { update: '...', translate: '...' }  => Initial State from Model + Updates Stream from Model + all transformed through translate
+// IF ELSE => throw error!
+
+
+
+// Make it use: stylus, less, sass, ...
+// Make it use: Backbone.Model, ...
+// Make it use: jade, haml, handlebars, underscore templates, mustache, ...
+
+var CREATE_WIDGET = {
+  UI    : {
+      model       : { 'now' : UI_MODELS['NumberOfChargeFreeNonHostedDataSources'], 'update': 'newModel' },
+      variants    : { 'now' : ['small']   , 'update' : 'BEM_variants' },
+      context     : { 'now' : 'none'      , 'update' : 'BEM_context'  },
+      state       : { 'now' : ''          , 'update' : 'BEM_state'    }
+  },                        
+  DATA  : {
+      model       : { 'now' : DATA_MODELS['NumberOfChargeFreeNonHostedDataSources'], 'update': 'newModel' },
+      validate    : { 'now' : function() { return '' /* no message for any input */; } },
+      inputType   : { 'now' : 'text' },
+      text        : { 'now' :  DATA_MODELS['NumberOfChargeFreeNonHostedDataSources'].get('NumberOfChargeFreeNonHostedDataSources'),
+                      'update' : 'NumberOfChargeFreeNonHostedDataSources' },
+      placeholder : { 'now' : 'please fill in a NumberOfChargeFreeNonHostedDataSources' },
+  }
+}
+
+
+//@@@@@@@@@@@@@@@@@ MODIFIER
+// MODIFIERs are properties of an entity that describes a BLOCK or an ELEMENT.
+// PURPOSE: to avoid developing another BLOCK and/or ELEMENT that is only minimally different from an existing one
+// 1. has a unique MODIFIER NAME  (for cross language use [js,html,css,etc...])
+// 1a. MODIFIER NAME consists of a MODIFIER TYPE and a MODIFIER VALUE
+// 1b. MODIFIER TYPE can be: VARIANT, CONTEXT, STATE, ... (additional modifier types are possible)
+//     but THEMEs should be done through "PRE PROCESSORS" (e.g. The Use of Variables, Mixins, ....)
+//      e.g.
+//      theme modifier specifies background color
+//      direction modifier specifies dropdown behavior (wether it opens above/below)
+//      popup window - may, or may not, contain a close button, thus have a VARIANT=closable modifier
+//      which could add a closing button and adjusts block's padding, thus internal layout accordingly.
+//      popup window might have a balloon-like appearance with different colors, thus a VARIANT=baloon
+// 2. changes the APPEARANCE of a BLOCK or ELEMENT
+// 3. doesnt change the surrounding CONTEXT of a BLOCK
+// 4. can be applied to different BLOCKS/ELEMENTs of the same type
+// 5. multiple MODIFIERs can be applied to the same BLOCK or ELEMENT,
+//    but only one STATE MODIFIER can be active at a time
+// MODIFIER NAME (Only instances of the same MODIFIER can have same names to minimize cascading side effects)
+//    => 'ID Selectors' in general cannot be repetetive in a single BLOCK (see 4.)
+//    => a single Element can only have one 'HTML Element Selectors' (see 5.)
+//    => multiple 'class selectors' can be applied to a single BLOCK or ELEMENT
+//       but might be used for more different purposes than 'MODIFIER NAMING' alone.
+// ==> Use MODIFIER DESCRIPTOR (technically implemented through 'prefixed CSS Class Selectors')
+//         = MODIFIER PREFIX + MODIFIER NAME
+//         = MODIFIER PREFIX + MODIFIER TYPE + MODIFIER VALUE
+//
+// MODIFIER PREFIX - A CSS Class Name prexix to distinguish it from other CSS Class Name Selectors
+// 1. can be a BLOCK DESCRIPTOR
+// 2. can be an ELEMENT PREFIX (thus BLOCK DESCRIPTOR + ELEMENT NAME)
+// MODIFIER TYPE
+/* e.g. */ --VARIANT
+// MODIFIER VALUE
+/* e.g. */ =highlight
+// MODIFIER NAME
+/* e.g. */ --VARIANT=highlight
+/* e.g. */ --STATE=active
+// MODIFIER DESCRIPTOR
+/* e.g. */ dp_BlockName--CONTEXT=dp_Menu
+/* e.g. */ dp_BlockName__elementName--VARIANT=highlight
+/* e.g. */ dp_BlockName__elementName--STATE=active
+/* e.g. */ dp_BlockName__elementName--VARIANT=large--CONTEXT=article--STATE=active
+/* e.g. */ dp_BlockName__elementName-V=large--C=dp_BlockNameX--S=active
+// EXAMPLE USAGE
+// e.g. A 'dp_SearchBar' BLOCK MODIFIER '--VARIANT=highlight' sets the background color of the block
+// http://img-fotki.yandex.ru/get/9316/221798411.0/0_babd5_c3d7b2b5_XL.png
+// http://img-fotki.yandex.ru/get/9325/221798411.0/0_babd2_7da50c7b_XL.png
+// e.g. A 'dp_NavBar__navBarItem' ELEMENT MODIFIER 'dp_NavBar__navBarItem--STATE=active' might change the appearance
+// http://img-fotki.yandex.ru/get/9313/221798411.0/0_babd0_503ecad_L.png
+// e.g. 'dp_NavBar' BLOCK MODIFIER 'dp_NavBar--CONTEXT=footer' might slightly change the layout
+// http://img-fotki.yandex.ru/get/9255/221798411.0/0_babd6_ec71b7f8_XXL.png
+/* CSS */         .dp_SearchBar                                               { ... }
+                  .dp_SearchBar__searchField                                  { ... }
+                  .dp_SearchBar__searchField--STATE=invalid                   { ... }
+                  .dp_SearchBar__searchButton                                 { ... }
+                  .dp_SearchBar--VARIANT\=highlight                           { background-color: brown; }
+                  .dp_SearchBar--CONTEXT\=dp_Menu  .dp_SearchBar__searchField { ... }
+/* JavaScript */  $('dp_SearchBar--CONTEXT=dp_Menu'); // if necessary at all
+/* HTML */        <div class="dp_Menu
+                              dp_Menu--STATE=disabled">
+                    <ul>
+                      <li class="dp_Menu__menuItem"></li>
+                      <li class="dp_Menu__menuItem"></li>
+                      <li class="dp_Menu__menuItem
+                                 dp_Menu__menuItem--STATE=selected"></li>
+                    </ul>
+                    <div class='dp_SearchBar
+                                dp_SearchBar--CONTEXT=dp_Menu
+                                dp_SearchBar--VARIANT=highlight'>
+                      <input class='
+                                    dp_SearchBar__searchField-STATE=active'/>
+                      <a href='/search' class='dp_SearchBar__searchButton'></div>
+                      <div class='dp_SearchBar__infoBox--dp_InfoBox'></div>
+                    </div>
+                  </div>
+
+
+//@@@@@@@@@@@@@@@@@ COMPOSITION
+// Blocks can be ATOMIC BLOCKS [AB] or part of other blocks,
+// which makes nesting inside another block, thus COMPOUND BLOCKS [CB], possible
+//
+// COMPOUND BLOCK
+// e.g. An input field and a button can be elements of the Search Block
+//      http://bem.github.io/bem-method/images/search.ru.png
+//
+// ARBITRARY PLACEMENT
+//      http://img-fotki.yandex.ru/get/9110/221798411.0/0_babcf_819f07f2_XXL.png
+//      http://img-fotki.yandex.ru/get/9153/221798411.0/0_babcd_313420f0_XXL.png
+//
+// BLOCK RE-USE
+// e.g. 'Login Button Block' can occur in 'Foot Block' or 'Text Block'
+//      http://img-fotki.yandex.ru/get/9255/221798411.0/0_babd6_ec71b7f8_XXL.png
+//
+// COMPLEX USE CASES - PUTTING IT ALL TOGETHER
+// CONVENTIONS:
+// - separate classes in your HTML with two (2) spaces (for improved readability)
+//
+
+// RULES OF THUMB - SMACSS & OOCSS & DRY CSS
+// - Use shallow selectors (e.g. '.product-item' over '.product-list > li')
+//   Don’t use more than 2 combinators in a selector
+// - Plain old DIV or SPAN elements, without classes attached, should not be used in the HTML
+// - Avoid Tag (HTML Element) Selectors (e.g. prefer 'h-headline' over '.h1' over 'h1')
+//   Don’t use non-semantic type selectors (e.g. DIV, SPAN) in any multi-part rule.
+//   DONT use 'tag selectors'
+// - Use Class Name Selectors as rightmost keys (e.g. '.product' over 'div.product')
+// - Prefer 'Child Selectors' over 'Descendent Selectors'
+// - Use multiple classes for different aspects
+// - Don’t allow any class names that begin with “js-” in CSS Files
+// - Avoid frequently using layout and positioning for non “l-” prefixed rules
+//  
+// 1a. Avoid use of 'ID Selectors' whenever possible (its the case more often than one might think)
+//     Don’t allow IDs in your selectors in CSS.
+// 1b. 
+// 2a. Have short 'Selector Chains'
+// 2b. DONT rely on HTML structure  when using CSS
+  // Be Intentional
+  /* Grenade */
+  #main-nav ul li ul { }
+  /* Sniper Rifle */
+  .subnav { }
+// 3. Leverage Cascade
+// 4. Emply GRIDs for consistent 'Page Structure'
+// 5. Use 'class selectors' as 'right-most selectors' in 'selector chains'
+// HTML elements should not be used in css selectors since they aren’t context-free
+// Cascading selectors for several blocks should be avoided
+// Cascading selectors should be avoided
+//
+//
+// e.g.
+// dp_BlockName__elementName--VARIANT=large--CONTEXT=article--STATE=active
+// dp_BlockName__elementName--V=large--C=article--S=active
+// + Modifer classes shouldn’t be used without their base class.
+//
+// EXAMPLE 1
+// A 'Panel Block' can be in a fullscreen/maximized state also in which the 'Chrome Modifier' and 'titlebar Element' disappear
+// => instead of defining modifiers for both panel and titlebar, it would be be wise to define the modifier just on parent
+// (say panel--STATE=fullscreen) and rest elements shall change accordingly.
+.panel--STATE\=fullscreen { ... }
+.panel--STATE\=fullscreen  .panel__titlebar { display: none; }
+// and to remove the 'Chrome Modifier' in fullscreen mode:
+1. toggle the 'panel--VARIANT=withChrome' class in JS along with adding the 'panel--STATE=fullscreen'
+2. overwrite the chrome CSS inside the panel--fullscreen class.
+// Toggling STATE (Answer from Yandex Guys (BEM INVENTORS) on STACK OVERFLOW)
+// Since 'panel--VARIANT=withChrome' might bring a lot of CSS properties and special JS functionality
+// its more performant to toggle it in JavaScript when applying 'panel--STATE=fulscreen'
+// => Needs to add/remove/toggle respective CSS Classes
+// and it's not a problem to share logic between CSS and JavaScript since
+// CSS and JavaScript for a block are stored in the same block folder
+//
+// EXAMPLE 2
+/* Block */   .dp_Button {}
+/* Block */   .dp_Service {}                // represents the higher level of an abstraction or component.
+/* Element */ .dp_Service__inputField {}    // SUB COMPONENT represents a descendent of .block that helps form .block as a whole.
+/* Element */ .dp_Service__links  {}
+/* Modifier */.dp_Service--STATE=active {}  // VARIATION represents a different state or version of .block.
+.dp_Service--VARIANT=bordered {} // if a particular service area should be styled differently (e.g. with a surrounding border)
+<section class="dp_Service  dp_Service--VARIANT=bordered">
+    <div class="dp_Service__inputField"></div>
+    <div class="dp_Service__links"></div>
+    <input type="Submit" value ="Search" class="dp_Button  dp_Button--CONTEXT=dp_Service">
+</section>
+// NOTE (to myself):
+//
+// - Widgets have elements
+//   - which are fully specified in template
+//   - which have all the required css in stylesheet
+//   - which have all the behavior specified in javascript
+// - Widgets use named subwidgets
+//   - which have a container in template, but not everything specified "dp_Service__subwidget_dp_Button_Confirm"
+//   - which have no styling because lack of knowledge of subwidget internals
+//     - but could use the container to show/hide/remove/add/switch stuff
+//   - have no javascript behavior attached, because doesnt know internals
+//   - subwidgets communicate with parent through models/events??
+// - Widgets have data-dependent sized array of subwidgets
+//   - (see named subwidgets)
+//   - but additionally: cant use container to show/hide/stuff specific subwidgets in array
+//   - but additionally: communicate through models = fine, but problematic if subwidgets share model?
+//   => wrap them in their runtime created subwidgetSpecific numbered container
+//   => put those under an "dp_Service__subwidgets_dp_Button"
+// e.g.
+    <div class="widget_UserManagementFormView__buttons"> // hash of buttons, where amount is known upfront (data independent)
+      <div class="widget_UserManagementFormView__confirmButton(widget_Button)"></div>
+      <div class="widget_UserManagementFormView__cancelButton(widget_Button)"></div>
+.widget_UserManagementFormView__cancelButton\(widget_Button\) { }
+// VS.
+    <div class="widget_UserManagementFormView__buttons([widget_Button])"> // array of buttons, where amount is known during runtime (data dependend)
+      <div class="widget_UserManagementFormView__button1(widget_Button)"></div> // <= will generate this stuff, where tags are numbered
+      <div class="widget_UserManagementFormView__button2(widget_Button)"></div>
+      <div class="widget_UserManagementFormView__button3(widget_Button)"></div>
+      <div class="widget_UserManagementFormView__button4(widget_Button)"></div>
+      <div class="widget_UserManagementFormView__button5(widget_Button)"></div>
+    </div>
+.widget_UserManagementFormView__buttons\(\[widget_Button\]\) { }
+
+//
+// CONCLUSION & BENEFITS
+// => easier for other team members to understand (identify components and their purpose in HTML)
+// => reduces likelihood of name conflicts in large projects
+// => increases consistency -> easier to share code
+
+/*
+That's not considered good practice. It's considered good practice to put images with html when they can be considered content and with css when they can be considered design. 
+*/
+
+
+DONT:
+.promo-box {}
+#sidebar .promo-box{}
+DO:
+.promo-box {}
+.promo-box--VARIANT\=light {}
+
+DONT
+.promo-box {}
+.product-page .promo-box {}
+DO:
+.promo-box .promo-box--CONTEXT\=product-page {}
+BETTER:
+.promo-box .promo-box--VARIANT\=eco {}
+
+DONT:
+.promoBox input[type=text] {}
+@media scrreen and (min-width: 20em) {
+  .promo-box input[type=text] {}
+}
+DO:
+.promoBox .promoBox_input {}
+.promoBox @(max-width: 500px) {
+  promoBox_input { }
+}
+BETTER: (https://github.com/ahume/selector-queries)
+.promoBox input[type=text] {}
+.promoBox--VARIANT\=narrow input[type=text] {}
+<div data-squery="min-width:400px=promoBox max-width:10em=promoBox--VARIANT=narrow">
+    <p>Content here</p>
+</div>
+// http://css-tricks.com/css-media-queries/
+// https://github.com/marcj/css-element-queries
+// http://coding.smashingmagazine.com/2013/06/25/media-queries-are-not-the-answer-element-query-polyfill/
+
+@media all and (max-width: 699px) {
+  .widget { background: #f00; width: 11px; }
+  .dashboard { max0-width: 500px;}
+  ...
+}
+
+@media (max-width:1000px) { /* code for 1. */ }
+@media (max-width:900px) { /* code for 2. */ }
+@media (max-width:800px) { /* code for 3. */ }
+
+<ul class="Dashboard">
+   <li class="widget">Chart1</li>
+   <li class="widget">Chart2</li>
+   <li class="widget">Chart3</li>
+</ul>
+
+.Dashboard .widget {
+  background-color: #f00;
+}
+@media all and (min-width: 1001px) {
+  .Dashboard .widget {
+    background-color: #ff0;
+  }
+@media all and (max-width: 1000px) and (min-width: 700px) {
+  .Dashboard .widget {
+    background-color: #f0f;
+  }
+}
+@media all and (max-width: 699px) and (min-width: 520px), (min-width: 1151px) {
+  .Dashboard .widget {
+    background-color: #00f;
+  }
+}
+.wide_container { width: 50em }
+.narrow_container { width: 20em }
+.my_element { border: 1px solid }
+@media (max-width: 30em) {
+    .wide_container .my_element {
+        color: blue;
+    }
+    .narrow_container .my_element {
+        color: red;
+    }
+}
+@media (max-width: 50em) {
+    .wide_container .my_element {
+        color: orange;
+    }
+    .narrow_container .my_element {
+        color: green;
+    }
+}
+
+
+
+//@@@@@@@@@@@@@@@@@ MULTILINGUAL CODE GROUPING
+// => Enables finding change related code, mo matter if it's html, css or js
+// => Enalbes Component Re-Use in other projects
+//
+// => BLOCK DESCRIPTION has a MULTILINGUAL IMPLEMENTATION (Many languages (techs) that are necessary to implement a BLOCK)
+// To have a BLOCK present on a PAGE as a UI element we need to IMPLEMENT it in the following techs:
+// BLOCK CONSISTENCY throughout Multilingual Presentation: (consists of)
+// (=MULTILINGUAL BLOCK IMPLEMENTATION)
+// 1 'CSS Styling' (Presentation Semantics, Appearance = Styling & Layout)- has APPEARANCE (CSS) CSS (Describe Appearance of a Block - can be "animated appearance" too)
+// 2. 'JavaScript Functionality' (Behavior)- has DYNAMIC BAHVIOR (JavaScript) 0 JavaScript (Describe dynamic behavior of a Block)
+// 3a. 'TEMPLATE Markup' (Structure) TEMPLATE (Turn "Block Declaration" into "HTML Code")
+// 3b. HTML+VARs (Data Fields???)
+// 4. Assets (Images, Documentation, etc.. that constitutes a Block)
+// => So a block must "know" everything about itself.
+//
+// GOAL: understand a block structure just from its folder structure without even reading a single line of code
+// BLOCK DIRECTORY
+//  - BLOCK NAME matches BLOCK DIRECTORY NAME
+//  - BLOCK ELEMENTS are placed under BLOCK DIRECTORY (subdirectories and/or files)
+//  - ELEMENT NAME matches SUBDIRECTORY NAME (includes ELEMENT CODE (=ELEMENT IMPLEMENTATION))
+//  - MODIFIERs are placed under BLOCK DIRECTORY (subdirectory and/or files)
+//  - MODIFIER NAME (MODIFIER KEY and MODIFIER VALUE) matches SUBDIRECTORY NAME (includes MODIFIER CODE (=MODIFIER IMPLEMENTATION))
+// => file names were made consistent with CSS selectors
+//
+// FILE & FOLDER Structure
+Blocks/ // or '/modules' or '/components'
+  // ALTERNATIVE 1
+  // => If there are elements/modifiers in your blocks which are not used on all pages,
+  //    you can put the implementation in the individual files to include just what you need.
+  // Each block is stored in a separate directory, elements and modifiers are stored in separate directories as well.
+  dp_menu1/
+    __/   // block elements
+      elementName1.css
+      elementName1.tpl
+      element2.css
+      element2.tpl
+      --VARIANT/
+      --STATE/
+    --VARIANT/  // BLOCK VARIANTS
+      =layoutHoriz.css
+      =layoutHoriz.tpl
+      =layoutVertical.css
+      =layoutVertical.tpl
+    --CONTEXT/  // CONTEXT DEPENENCE
+      =dp_ChartEditor.css
+      =dp_ChartEditor.tpl
+      =dp_Settings.css
+      =dp_Settings.tpl
+    --STATE/  // POSSIBLE STATES
+      =error.css
+      =error.tpl
+      =success.css
+      =success.tpl
+      =editable.css
+      =editable.tpl
+    main.css
+    main.js
+    main.tpl // or main.html
+    ASSETS/ // images, fonts, icons ....
+  ...
+  // ALTERNATIVE 2
+  dp_menu1/
+    __elementName1.css
+    __elementName1.css
+    __elementName1.tpl
+    __element2.css
+    __element2.tpl
+    // ELEMENT VARIANTS
+    __element2--VARIANT=layoutHoriz.css
+    __element2--VARIANT=layoutHoriz.tpl
+    // BLOCK VARIANTS
+    --VARIANT=layoutHoriz.css
+    --VARIANT=layoutHoriz.tpl
+    --VARIANT=layoutVertical.css
+    --VARIANT=layoutVertical.tpl
+    // CONTEXT DEPENENCE
+    --CONTEXT=dp_ChartEditor.css
+    --CONTEXT=dp_ChartEditor.tpl
+    --CONTEXT=dp_Settings.css
+    --CONTEXT=dp_Settings.tpl
+    // POSSIBLE STATES
+    --STATE=error.css
+    --STATE=error.tpl
+    --STATE=success.css
+    --STATE=success.tpl
+    --STATE=editable.css
+    --STATE=editable.tpl
+    main.css
+    main.js
+    main.tpl // or main.html
+    ASSETS/ // images, fonts, icons ....
+  ...
+  // ALTERNATIVE 3
+  // If the whole CSS code is inside one large file it is necessary to scroll all the time to 'Block Sections'
+  dp_menu3/   // blocks CSS codebase - the 'Block Name' is used for its corresponding folder and file names
+    main.css  // Contains all CSS Classes for ELEMENTS and MODIFIERs
+    main.js   // Contains all JS  for ELEMENTs and MODIFIERs
+    main.tpl  // Contains all Template related Markup for ELEMENTs and MODIFIERs
+    ASSETS/   // images, fonts, icons ....
+  dp_article/
+  ...
+  // ALTERNATIVE 4
+  // Or this (no directories; the code for elements and modifiers is stored in blocks' files)
+  dp_menu3.css
+  dp_menu3.js
+  dp_menu3.tpl
+  ASSETS/ // images, fonts, icons ....
+  ...
+  // ALTERNATIVE 5
+  // You can also do this (no directories; elements and modifiers in separate files)
+  dp_menu1/
+  dp_menu1__elementName1.css
+  dp_menu1__elementName1.css
+  dp_menu1__elementName1.tpl
+  dp_menu1__element2.css
+  dp_menu1__element2.tpl
+  // ELEMENT VARIANTS
+  dp_menu1__element2--VARIANT=layoutHoriz.css
+  dp_menu1__element2--VARIANT=layoutHoriz.tpl
+  // BLOCK VARIANTS
+  dp_menu1--VARIANT=layoutHoriz.css
+  dp_menu1--VARIANT=layoutHoriz.tpl
+  dp_menu1--VARIANT=layoutVertical.css
+  dp_menu1--VARIANT=layoutVertical.tpl
+  // CONTEXT DEPENENCE
+  dp_menu1--CONTEXT=dp_ChartEditor.css
+  dp_menu1--CONTEXT=dp_ChartEditor.tpl
+  dp_menu1--CONTEXT=dp_Settings.css
+  dp_menu1--CONTEXT=dp_Settings.tpl
+  // POSSIBLE STATES
+  dp_menu1--STATE=error.css
+  dp_menu1--STATE=error.tpl
+  dp_menu1--STATE=success.css
+  dp_menu1--STATE=success.tpl
+  dp_menu1--STATE=editable.css
+  dp_menu1--STATE=editable.tpl
+  ASSETS/ // images, fonts, icons ....
+  // => In the end, everything is compiled into a single file for PRODUCTION
+  Blocks.css // could @import of appropriate files from the blocks directory
+
+
+//// COMPONENT PACKAGE MANAGER - [Advanced Topic]
+// Tracking Dependencies between COMPONENTS with
+// https://github.com/component/component
+{ // component.json
+   "name": "dp_SearchBar",
+   "version": "1.0.0",
+   "scripts": ["dp_SearchBar.js"],
+   "styles": ["dp_SearchBar.css"],
+   "templates": ["dp_SearchBar.tpl"]
+  "dependencies": {
+    "component/dp_SearchField": "*",
+    "component/dp_StatusBar": "*",
+    "component/dp_SearchButton": "*",
+    "component/underscore": "*",
+    "component/enumerable": "0.3.1", // can filter dom elements
+    "component/dom": "0.6.0" // small jQuery like dom manipulation lib
+  },
+}
+
+
+
+
+
+/*----------*\
+  5. $STATE - State Rules
+  State styles can apply to layout and/or module styles
+  IMPORTANT: State styles indicate a JavaScript dependency
+  e.g. hidden/expanded, active/inactive, different screenSizes, differentLocationsOfPage
+
+State Changes
+- is-active, is-collapsed, btn-pressed
+
+
+  STATE STYLES:
+  - applied to 'elements' to indicate CHANGED STATE (client side)
+
+  ALLOWS: use of '!important' to override more complex style rule sets
+
+  State rules - will not be able to rely on inheritance to apply its styling
+  Sometimes a state is very specific to a particular module where styling is very unique.
+  
+  STATE CHANGE through:
+    class name - happens with javascript via some interaction
+    pseudo-class - :hover, :active, ....
+    media query - different viewports, etc...
+
+// State
+is-xxx {}
+
+// describe how modules or layouts will look when in a particular state
+// e.g. expanded/hidden, active/inactive, resolution sensitive
+.is-state-type
+.is-hidden { display: none; }
+.is-error { font-weight: bold; color: red; }
+.is-tab-active { border-bottom-color: transparent; }
+\*----------*/
+
+.media{}
+.media__img{}
+.media__img--rev{}
+.media__body{}
+<div class="media">
+    <img src="logo.png" alt="Foo Corp logo" class="media__img--rev">
+    <div class="media__body">
+        <h3 class="alpha">Welcome to Foo Corp</h3>
+        <p class="lede">Foo Corp is the best, seriously!</p>
+    </div>
+</div>
+
+<div class="base_layout  bar__structure  base--skin  state1">
+
+.tab {
+    background-color: purple;
+    color: white;
+}
+.is-tab-active {
+    background-color: white;
+    color: black;
+}
+// with jQuery
+$('.btn-close').click(function(){ 
+    $(this).parents('.dialog').addClass('is-hidden');        
+})
+
+//
+<div id="content">
+   <div class="toolbar">
+      <button id="btn-new" class="btn" data-action="menu">New</button>
+   </div>
+</div>
+<div id="menu-new" class="menu">
+   <ul> ... </ul>
+</div>
+// bind a click handler to the button
+$('#btn-new').click(function(){
+    // wrap the clicked button in jQuery
+    var el = $(this); 
+
+    // change the state of the button
+    el.addClass('is-pressed');
+
+    // find the menu by stripping btn- and
+    // adding it to menu selector
+    $('#menu-' + el.id.substr(4)).removeClass('is-hidden');
+});
+
+// INSTEAD
+<div id="content">
+   <div class="toolbar is-active">
+      <button id="btn-new" class="btn" data-action="menu">New</button>
+      <div id="menu-new" class="menu">
+          <ul> ... </ul>
+      </div>
+   </div>
+</div>
+
+/* CSS for styling */
+.is-active .btn { color: #000; }
+.is-active .menu { display: block; }
+
+//////
+Sub-module naming convention
+.btn { color: #333; } 
+.btn-pressed { color: #000; } 
+.btn-disabled { opacity: .5; pointer-events: none; }
+State naming convention
+.btn { color: #333; } 
+.is-pressed { color: #000; } 
+.is-disabled { opacity: .5; pointer-events: none; }
+Attribute selectors convention
+.btn[data-state=default] { color: #333; } 
+.btn[data-state=pressed] { color: #000; } 
+.btn[data-state=disabled] { opacity: .5; pointer-events: none; }
+// bind a click handler to each button
+$(".btn").bind("click", function(){
+    // change the state to pressed
+    $(this).attr('data-state', 'pressed');
+});
+<!-- HTML -->
+<button class="btn" data-state="disabled">Disabled</button>
+
+
+.btn { ... }
+.btn:hover { ... }
+.btn:focus { ... }
+
+.btn-default { ... }
+.btn-default:hover { ... }
+
+.btn.is-pressed { ... }
+.btn.is-pressed:hover { ... }
+
+.btn-default.is-pressed { ... }
+.btn-default.is-pressed:hover { ... }
+
+
+///////////
+/* default state for nav items */
+.nav > li {
+   float: left;
+}
+
+/* alternate state for nav items on small screens */
+@media screen and (max-width: 400px) {
+    .nav > li { float: none; }
+}
+
+... elsewhere for layout ...
+
+/* default layout */ 
+.content { 
+    float: left;
+    width: 75%;
+}
+
+.sidebar {
+    float: right;
+    width: 25%;
+}
+
+/* alternate state for layout on small screens */
+@media screen and (max-width: 400px) {
+    .content, .sidebar { 
+        float: none;
+        width: auto; 
+    }
+}
+
+
+
+
+
+/*----------*\
+  6. $THEME (ofte not required, because its in the 'State')
+\*----------*/
+/////// 6. $THEME - Pink Theme CSS ///////
+// Theme rules are similar to state rules in that they describe how modules or layouts might look.
+// Most sites don’t require a layer of theming but it is good to be aware of it.
+.theme-header { background-image: url('/theme/pink/header.png'); }
+.theme-border { 1px solid pink; }
+
+
+
+
+
+/*----------*\
+  7. $JS HOOKS - INTERACTION // BEHAVIOR - Non-styled JavaScript Hooks
+\*----------*/
+// javascript class prefixed with 'js' act as JavaScript Hooks => '.js-'
+// This means that we can attach both JS and CSS to classes in our markup but there will never be any troublesome overlap.
+.js-action-name
+.js-login
+.js-toggle
+.js-drag-and-drop
+
+
+
+
+
+/*----------*\
+  8. $DETECTION
+\*----------*/
+/////// 
+// Are used for 'Feature Detection' => '.supports-' (e.g. Modernizr classes)
+
+
+
+
+
+/*----------*\
+  9. $TESTING
+\*----------*/
+// Used for 'Automated Tests'
+
+
+
+
+
+/////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////
+
+
+/* Callout Module with State */
+.callout.is-collapsed { }
+
+
+//////////////////
+1. Initial Phase
+ 1a. Optimize Selectors
+	eleminate qualifier selectors (div#, div., ...) => (#.., ...)
+	eleminate the middleman (.widget li a) -> (.widget a)
+	have short selector chains (#toc>LI>A) -> (.toc-anchor)
+ 1b. Reduce the Redundant
+
+
+STYLE GUIDE
+1. Determine unique elements/components
+1b. notate colors for: text, header, links, buttons
+2. style core elements (headings, links, tables, blockquotes, lists, forms
+3. components overwrite base styles (search boxes, navigation, ...
+3b. include interaciton: hover, focus, active states
+4. ADD LAYOUT LAST (put components into place
+4b. each LAYOUT is a separate document/page
+5. Document your coding process (naming conventions, grouping, classifying components, ...)
+
+
+Separate CONTAINER from CONTENT
+Seperate STRUCTURE from SKIN
+IDENTITY vs. STATE
+
+Content Objects flow naturally
+Container Objets restrict where/how content objects flow
+Containers dont have to be only grids&columns
+
+<!-- container -->
+<section class="my-oocss-container">
+  <!-- content -->
+  <p class="my-oocss-content">...</p>
+  <span> some other content</span>
+</section>
+
+structures classes -> layout
+skin classes -> themeing/styling
+
+<aside class="structure skin">...</aside>
+.structures { float: left; width: 8em; max-height:20em; }
+.skin { color: #2faced; border: 1px; }
+
+
+
+OOCS Object - OOCSS Objects inherit from other OOCSS objects
+OOCSS Objects inherit attributes + run-time-states
+1. html fragment / dom nodes
+2. associates css rules & resources (fonts, images)
+3. javascript (behavior, events, ...)
+=>
+1. <tag class="my-oocss-class">...</tag>
+<tag class="base special_mixin1 special_mixin2 state1 state2">..</tag>
+2. .my-oocss-class { /* ... */ }
+.base
+.special_mixin1
+.special_mixin2
+//identity
+.base {}
+.special{ /* inherits .base */
+//state
+.state1 {/* run-time overrides */
+.state2 { /* more overrides */
+3. $('.my-oocss-class').click(function () { *...*/ });
+
+STATE
+LOOSE COUPLING
+message passing == loose coupling
+state classes are messages!
+change html/css without changing js
+API == add/remobe/toggleClass
+
+good: $('my-widget').addClass('no-list');
+.no-list ul { display:none; }
+
+
+bad: $('my-view').find('li').css('color', 'red').filter('.obsolete').css('color', 'gray');
+good: $('.my-view').addClass('filtered');
+.filtered li {color:red;}
+.filtered li.obsolete{color:gray;}
+
+
+ORGANIZED CSS
+css is organized into object 'classes' just like all of your other code'
+.progress-bar{}
+.progress-bar .cancel-button{}
+.progress-bar .spinner{}
+.progress-bar .progress-frame div span {}
+.progress-bar.progress-complete{}
+.progress-bar.progress-error{}
+
+/////////////////////////////////////////
+1. Ignore HTML
+For each: "What is it?" -> Identity + List run-time-states
+
+Identitty ('is-a'): progress-bar
+specialization: progress-upload
+states:
+ progress-initializing
+ progress-uploading
+ progress-finalizing
+ progress-completed
+ progress-canceled
+ progress-error
+
+.progress-bar {}
+.progress-bar.progress-canceled h2 {}
+.progress-bar.progress-completed h2 {}
+.progress-bar.progress-error h2 {}
+...
+.progress-frame {}
+.progress-frame div {}
+.progress-frame div span {}
+.progress-display .cancel-action {}
+...
+
+
+////////
+Place State Classes (for actions) as high up in the "COMPONENT" as possible
+use OOCSS inheritance (remember that descendant nodes can inherit run time states
+
+
+AVOID
+h3 {color:black;}
+#weatherModule h3{color:red;}
+#tabs h3{color:blue}
+INSTEAD
+h1, ,h1 {...}
+h2, .h2 {...}
+...
+<h3 class='h6'>Heading</h3>
+
+.category {}
+.section {}
+.product {}
+.prediction {}
+
+
+GRID controls WIDTH
+CONTENT controls HEIGHT
+
+.error { most of the code goes here }
+div.error { exceptions
+p.error { go
+em.error { here
+
+// use only for default values
+div {..
+ul {...
+p {...
+
+// cascade rules
+.myModules .hd{...
+.myModules2 .hd {...
+
+AVOID SPECIFYING LOCATIONS
+instead add classes to that which should change
+.sidebar ul {... -> .mainNav{
+.header ul {... -> .subNav {.
+
+
+
+
+
+/////////////////////////////////////////////////////////////////
+1. Application Framework
+2. Package Management
+3. Libraries
+4. Modules
+6. Templates
+7. CSS Pre-Processors
+8. Version Control
+9. Auditing & Analytics
+10. UI Architectures
+11. Testing
+12. Minification
+
+
+LIVING STYLEGUIDES?
+- For each Component ~ 3 Variantes (e.g. small, normal, big)
+- 
+
+Components (Widgets)
+- Independent of the Apps View
+e.g.
+BoxComponent/
+- skin (=styles)
+ - _boxBasic.scss
+ - _boxHighlight.scss
+ _box.scss
+- script
+ - tabs.js
+box.handlebars // a template per component
+box_doc.handlebars
+init.js
+
+JSON file that references components
+(we don't love this bit)
+@import component
+Watchers set up to automatically build all the docs
+whenever the handlebars, Sass or JavaScript are saved
+
+/////////////////////////////////////////////////////////////////
+
+
+
+// TAGS pertaining to the function of a COMPONENT
+/** // 2. Tagging code
+ * ^navigation ^lists
+ */
+.nav{}
+/**
+ * ^grids ^lists ^tables
+ */
+.matrix{}
+
+
+// 3. Object/extension pointers
+// In your base stylesheet:
+/**
+ * Extend `.foo` in theme.css
+ */
+ .foo{}
+// In your theme stylesheet:
+/**
+ * Extends `.foo` in base.css
+ */
+ .bar{}

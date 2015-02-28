@@ -1,0 +1,136 @@
+/* SOURCE ::::::::::::::::::::::::::::::::::::::::::::::::::::: */
+.NavigationBar { /* ... */ }
+.NavigationBar__title { font-size: 3em; }
+.NavigationBar__Logo { width: 100% }
+.NavigationBar__menu { color: blue; }
+.NavigationBar--LANDSCAPE_true { width: 100% }
+.NavigationBar--LANDSCAPE_true .NavigationBar__title {
+  font-size: 5em;
+}
+.NavigationBar--LANDSCAPE_true .NavigationBar__Logo {
+  width: 100%;
+}
+.NavigationBar--LANDSCAPE_true .NavigationBar__menu {
+  width: 100%;
+}
+.NavigationBar--MAIN_false { background-color: grey; }
+.NavigationBar--MAIN_false .NavigationBar__title {
+  color: green;
+}
+.NavigationBar--MAIN_false .NavigationBar__Logo {
+  width: 100%;
+}
+.NavigationBar--MAIN_false .NavigationBar__menu {
+  width: 100%;
+}
+/* COMPILED ::::::::::::::::::::::::::::::::::::::::::::::::::::: */
+.holon-NavigationBar0-0-1 { /* ... */ }
+.holon-NavigationBar0-0-1__title { font-size: 3em; }
+.holon-NavigationBar0-0-1__Logo { width: 100% }
+.holon-NavigationBar0-0-1__menu { color: blue; }
+.holon-NavigationBar0-0-1--LANDSCAPE_true { width: 100% }
+.holon-NavigationBar0-0-1--LANDSCAPE_true .holon-NavigationBar0-0-1__title {
+  font-size: 5em;
+}
+.holon-NavigationBar0-0-1--LANDSCAPE_true .holon-NavigationBar0-0-1__Logo0-1-0 {
+  width: 100%;
+}
+.holon-NavigationBar0-0-1--LANDSCAPE_true .holon-NavigationBar0-0-1__menu {
+  width: 100%;
+}
+.holon-NavigationBar0-0-1--MAIN_false { background-color: grey; }
+.holon-NavigationBar0-0-1--MAIN_false .holon-NavigationBar0-0-1__title {
+  color: green;
+}
+.holon-NavigationBar0-0-1--MAIN_false .holon-NavigationBar0-0-1__Logo0-1-0 {
+  width: 100%;
+}
+.holon-NavigationBar0-0-1--MAIN_false .holon-NavigationBar0-0-1__menu {
+  width: 100%;
+}
+
+
+/*-----------------------------------------------------------------------------
+  SUBSCRIBE
+-----------------------------------------------------------------------------*/
+/*.Subscribe {
+  z-index: 100;
+  position: relative;
+  width: 100%;
+  padding: 3em;
+  overflow: hidden;
+  font-size: 2em;
+  vertical-align: top;
+  background-color: configuration_green;
+}
+.Subscribe__box {
+  z-index: 100;
+  display: block;
+  width: 31em;
+  height: 14em;
+  margin: 0 auto;
+  padding-left: 0.5em;
+}
+.Subscribe__box::before {
+  content: "[";
+  display: inline-block;
+  color: configuration_purple;
+  font-size: 12em;
+  font-weight: 900;
+}
+.Subscribe__box::after {
+  content: "]";
+  display: inline-block;
+  color: configuration_purple;
+  font-size: 12em;
+  font-weight: 900;
+}
+.Subscribe__content {
+  position: relative;
+  display: inline-block;
+  width: 20em;
+  bottom: 1.3em;
+  padding-left: 0.38em;
+}
+.Subscribe__description {
+  font-size: 2em;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  color: configuration_purple;
+  padding-left: 1.4em;
+}
+.Subscribe__input-email {
+  display: inline-block;
+  border: 0.1em solid configuration_purple;
+  color: configuration_purple;
+  background-color: configuration_green;
+  width: 12em;
+  height: 2em;
+  font-size: 1em;
+  margin-top: 0.4em;
+  padding-left: 0.4em;
+}
+.Subscribe__input-email::-webkit-input-placeholder {
+  color: configuration_white;
+}
+.Subscribe__input-email:-moz-placeholder {
+  color: configuration_white;
+  opacity: 1;
+}
+.Subscribe__input-email::-moz-placeholder {
+  color: configuration_white;
+  opacity: 1;
+}
+.Subscribe__input-email:-ms-input-placeholder {
+  color: configuration_white;
+}
+.Subscribe__action-submit {
+  display: inline-block;
+  border: none;
+  color: configuration_green;
+  background-color: configuration_purple;
+  width: 7em;
+  height: 2em;
+  font-size: 1em;
+  margin-top: 0.4em;
+}*/

@@ -1,40 +1,3 @@
-// carousel = function(){
-//    var config = {
-//       CSS:{
-//          classes:{
-//             current:'current',
-//             scrollContainer:'scroll'
-//          },
-//          IDs:{
-//             maincontainer:'carousel'
-//          }
-//       },
-//       labels:{
-//          previous:'back',
-//          next:'next',
-//          auto:'play'
-//       },
-//       settings:{
-//          amount:5,
-//          skin:'blue',
-//          autoplay:false
-//       },
-//    };
-//    function init(){
-//    };
-//    function scroll(){
-//    };
-//    function highlight(){
-//    };
-//    return {config:config,init:init}
-// }();
-
-
-
-// AVOID HEAVY NESTING, by SPECIALIZED TOOL METHODS
-
-
-
 /*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
   COMMONJS MODULE EXPORT                                        (Version 0.0.0)
 
@@ -59,7 +22,7 @@
     function MODULENAME_API (
       /*-----------------------------------------------------------------------
         MODULE API
-      
+
           @TODO: think about what i need here.
             MODULENAME_API.CONTRACT
             MODULENAME_API (CONTAINER, SETTINGS, SUGGESTIONS)
@@ -68,7 +31,7 @@
 
           USAGE:
             ...
-      \*---------------------------------------------------------------------*/
+      -----------------------------------------------------------------------*/
       //INJECTED DEPENDENCIES:
       CONTAINER,  // DOM Form Element to apply MODULENAME to
       //OPTIONS:
@@ -97,7 +60,7 @@
       /*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
         MODULE CREATION                                       (build this lego)
       :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
-      var MODULE = 
+      var MODULE =
         ENTITIES.length ? ENTITIES[ENTITIES.length-1] : // @JOB: if singleton vs factory
         (function MODULENAME (STATE) {
           var
@@ -113,7 +76,7 @@
             DEFINE
           -------------------------------------------------------------------*/
             // START = function START (data, schema, collection, containerQuery) {
-            //   return api; 
+            //   return api;
             // }
           /*-------------------------------------------------------------------
             USER INTERACTION EVENTS & HANDLER
@@ -140,7 +103,7 @@
               //   return START (DATA, TRANSLATIONS, SCHEMA, COLLECTION, CONTAINER);
               // },
               /*---------------------------------------------------------------
-                CONFIGURE {{MODULENAME}} COMPONENT                        
+                CONFIGURE {{MODULENAME}} COMPONENT
               ---------------------------------------------------------------*/
               CONFIGURE : function configure (params) {
                 if (!params) {
@@ -169,7 +132,7 @@
 
               @JOB: make INIT/CONFIGURE and START one method with many params
               @JOB: make module CONFIGURE a constructor option
-              
+
           -------------------------------------------------------------------*/
           // [Optional] CONFIGURE this module immediately
           api.CONFIGURE({}); // provide optional settings argument
@@ -209,7 +172,7 @@
       SET OF MODULE INSTANCES - only 1 if singleton
 
       @JOB: singleton vs factory
-      
+
     -------------------------------------------------------------------------*/
     [],
     /*-------------------------------------------------------------------------

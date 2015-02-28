@@ -1,0 +1,25 @@
+// FLATTEN + UNFLATTEN  Objects
+// -> object leafs
+// -> object branches == sub objects
+// -> arrays == object[0], object[1], ...
+
+// javascript:
+  var normal = { x: 'asdf', y: { z1: 1, z2: 2, z3: 3}, z: [1,2,3,4,5]};
+  var flat   = flatten(x);
+  flat = {
+    'x': 'asdf',
+    'y.z1': 1,
+    'y.z2': 2,
+    'y.z3': 3,
+    'z.0' : 1,
+    'z.1' : 2,
+    'z.2' : 3,
+    'z.3' : 4,
+    'z.4' : 5
+  };
+  var unflat = unflatten(x);
+  unflat = {
+    x: 'asdf',
+    y: { z1: 1, z2: 2, z3: 3},
+    z: { '0': 1, '1': 2, '2': 3, '3': 4, '4': 5}
+  };

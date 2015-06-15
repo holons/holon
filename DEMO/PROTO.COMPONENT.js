@@ -1,41 +1,29 @@
-// var LikeButton = React.createClass({
-//   getInitialState: function() {
-//     return {liked: false};
-//   },
-//   handleClick: function(event) {
-//     this.setState({liked: !this.state.liked});
-//   },
-//   render: function() {
-//     var text = this.state.liked ? 'like' : 'unlike';
-//     return (
-//       <p onClick={this.handleClick}>
-//         You {text} this. Click to toggle.
-//       </p>
-//     );
-//   }
-// });
+// LOOK @ Boilerplate @ project-lovetastic - or newer if that file says so
+////////////
 function require() { return '<p>You <span>text</span> this. Click to toggle.</p>'; }
-// wub chibbi chibbi chib chib chow
+
 function LikeButton (CONTAINER, DATA) { // COLLECTION, SCHEMA
-  function transform (STATE) { return STATE ? 'liked' : 'unliked'; }
+  function transform (data) { return data ? 'liked' : 'unliked'; }
   // DEPs = SDK = ...all needed require(...)'s
   var
-    x         = document.createDocumentFragment(),
-    // CONTAINER - maybe for event delegation
-    // POTENTIALS - context in which to move around (it's options visible to user)
-    COMPONENT = (x.innerHTML=require('./index.template.html'),x.childNodes[0]),
+    IN_DOM    = CONTAINER, // maybe also to use for event delegation pattern
+    OFF_DOM   = d.cDF(),   // POTENTIALS - context in which to move around (it's options currently not to user)
+    TEMP      = d.cDF(),   // (=updatelist, =MOVE2DOM)
+    COMPONENT = (TEMP.innerHTML=require('./index.template.html'),
+                 TEMP.childNodes[0]),
     __liked   = COMPONENT.querySelector('span')
   ;
+  //////////////////////////
   // INIT State
   __liked.innerHTML = transform(DATA.liked || false); }
-
+  //////////////////////////
   // ON System Input -> ACT as needed
   //  - ....
   DATA.on('change', function (key, STATE) {
     if (key === 'like') {
       __liked.innerHTML = transform(STATE); }
   });
-
+  //////////////////////////
   // ON User Input -> DISPATCH EVENTs as needed
   //  - dispatching events 'notifies', so that 'hooks' (calling components api) ca be done if needed
   COMPONENT.addEventListener('click', function(e) { // events + handlers
@@ -44,15 +32,14 @@ function LikeButton (CONTAINER, DATA) { // COLLECTION, SCHEMA
     // var eventAdd = new CustomEvent('ADD', SDK.EVENTS['ADD'](max_length + 1));
     // COMPONENT.dispatchEvent(eventAdd);
   });
-
+  //////////////////////////
   // Initial Render
   CONTAINER.appendChild(x);
-
+  //////////////////////////
   // return API;
 };
 ///////////////////
 // USAGE
-// React.renderComponent(<LikeButton />,document.getElementById('example'));
 LikeButton(document.getElementById('example'), {});
 
 

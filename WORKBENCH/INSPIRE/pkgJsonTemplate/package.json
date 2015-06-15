@@ -1,9 +1,0 @@
-# NPM
-
-```
-  "scripts": {
-  "postinstall": "npm ddp"
-  }
-```
-http://substack.net/task_automation_with_npm_run
-https://www.npmjs.com/search?q=ecosystem:hapi

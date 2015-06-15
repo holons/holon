@@ -39,6 +39,19 @@ usage
 =======
 [[back to top](#table-of-content)]
 
+```js
+var componentName = require('componentName'); // encapsulates best practice boilerplate for certain kinds of projects
+var componentAPI = componentName({
+  container      : `domNodeOrSelector`, // maybe it should always be a dom node
+  options        : {/* configuration options */}, /* some configuration depending on the project that should be built*/
+  data           : `modelOrStreamOrEventEmitter`, // to initialize or update stuff /* some webpage specific data or e.g. RESTful endpoints to fetch the data */
+  children       : [ // this is optional, because maybe the component can use defaults if not provided /* inject some components to be used to render page in detail - if not provided might fallback to default components */
+    { '__title'  : titleComponent   },
+    { '__list'   : listComponent    },
+    { '__sidebar': sidebarComponent }
+  ]
+});
+```
 __☠☠☠ section is under construction ☠☠☠__
 
 install with [npm](http://npmjs.org) do:

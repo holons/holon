@@ -160,14 +160,14 @@ repository
   * Contains all internal dependencies used by this component, but not yet published to their own repositories
 4. __`./RELEASE`__
   * Contains production ready versions of this component which are used by examples in `./DEMO`
-  * __CDNs:__ `v0.0.3@git`, `v0.0.2@npm`, `v0.0.2@bower`
+  * __CDNs/REGISTRYs:__ `v0.0.3@git`, `v0.0.2@npm`, `v0.0.2@bower`
 5. __`./SOURCE`__
   * Contains all the source files for this component
 6. __`./SOURCE/media`__
   * Contains fonts, images, videos, music and the like, used by this component
 7. __`./SPECIFICATION`__
   * Contains the vision, roadmap, open jobs and tests for completed jobs regarding this component
-8. __`./WORKBENCH`__
+8. __`./@TODO/`__ (currently private)
   * Contains some experimental stuff for inspiration to "spike" the use of certain technologies to develop this component further
 
 

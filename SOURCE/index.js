@@ -1,205 +1,94 @@
-/*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-  COMMONJS MODULE EXPORT                                        (Version 0.0.0)
+#! /usr/bin/env node
+// STACK
+var shell    = require('shelljs')
 
-    @JOB: UBER_NGEN GENERATOR for Components schreiben
-    @JOB: dropin vs configurable
-    @JOB: Make "COMMENTS" create a nice visual structure of module in miniview
+// CUSTOM
+var _starter = require('_starter')
+var json2fs  = require('_json2fs2json').json2fs
 
-:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
-(function COMMONJS_EXPORTER (FACTORY) {
-  'use strict';
-  // If MODULE is a "Drop In" which executes once after loading:
-  module.exports = FACTORY(/*with predefined set of PARAMS*/); // CommonJS
-  // // ELSE IF MODULE is Otherwise a CONFIGURABLE:
-  // module.exports = FACTORY;
-})(
-  /*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-    MODULENAME                                                      (this lego)
-  :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
-  (function MODULE_MODULENAME (CONTRACT, ENTITIES, DEPs, window, global, undefined)
-  { // to shield MODULE from overriden 'undefined' and global object pollution
-    'use strict';
-    function MODULENAME_API (
-      /*-----------------------------------------------------------------------
-        MODULE API
+var $args = process.argv[2]
 
-          @TODO: think about what i need here.
-            MODULENAME_API.CONTRACT
-            MODULENAME_API (CONTAINER, SETTINGS, SUGGESTIONS)
-            ....
-
-
-          USAGE:
-            ...
-      -----------------------------------------------------------------------*/
-      //INJECTED DEPENDENCIES:
-      CONTAINER,  // DOM Form Element to apply MODULENAME to
-      //OPTIONS:
-      SETTINGS,   // OPTIONAL -- name:string, required:boolean, minQueryLength:number
-      SUGGESTIONS // Optional ARRAY from which to choose autocomplete SUGGESTIONS
-    ) {
-      /*-----------------------------------------------------------------------
-        PARAMETER VALIDATION + SANITIZATION
-
-        @JOB: Refine behavior in relation to given input
-        @JOB: Only do if not singleton and single instance already exists
-        @ASSERT: at least one 'billboards' is given in SETTINGS.billboards
-          else: return without creating anything new!
-      -----------------------------------------------------------------------*/
-      SETTINGS = typeof SETTINGS === 'undefined' ?
-        { // DEFAULT SETTINGS
-          // settings      : {placeholder: 'Search', value: '', minQueryLength: 0},
-          // SUGGESTIONS   : [],
-          // selection     : '',
-          // onQueryChange : function onQueryChange (oldQuery, newQuery) {
-          //   return;
-          // }
-        }
-        : SETTINGS // @JOB: Extend non-given OPTIONS with DEFAULTS, allow override defualts with "NULL"
-      ;
-      /*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-        MODULE CREATION                                       (build this lego)
-      :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
-      var MODULE =
-        ENTITIES.length ? ENTITIES[ENTITIES.length-1] : // @JOB: if singleton vs factory
-        (function MODULENAME (STATE) {
-          var
-          /*-------------------------------------------------------------------
-            TEMPLATE - BUILDING
-          -------------------------------------------------------------------*/
-            // none
-          /*-------------------------------------------------------------------
-            TEMPLATE - CUSTOMIZATION (Markup, Properties, Styling)
-          -------------------------------------------------------------------*/
-            // none
-          /*-------------------------------------------------------------------
-            DEFINE
-          -------------------------------------------------------------------*/
-            // START = function START (data, schema, collection, containerQuery) {
-            //   return api;
-            // }
-          /*-------------------------------------------------------------------
-            USER INTERACTION EVENTS & HANDLER
-          -------------------------------------------------------------------*/
-            // none
-          /*-------------------------------------------------------------------
-            MODULE SPECIFIC HELPERS
-          -------------------------------------------------------------------*/
-            // none
-          /*-------------------------------------------------------------------
-            PUBLIC ENTITY API - SET MODULE ENTITY DEFAULT INTERFACE
-          -------------------------------------------------------------------*/
-            api =       {
-              plates    : DEPs.plates,
-              holonize  : {},
-              // START     : function start() {
-              //   var
-              //     DATA          = STATE.params.data,
-              //     SCHEMA        = STATE.params.schema,
-              //     COLLECTION    = STATE.params.collection,
-              //     CONTAINER     = STATE.params.containerID,
-              //     TRANSLATIONS  = STATE.params.translations
-              //   ;
-              //   return START (DATA, TRANSLATIONS, SCHEMA, COLLECTION, CONTAINER);
-              // },
-              /*---------------------------------------------------------------
-                CONFIGURE {{MODULENAME}} COMPONENT
-              ---------------------------------------------------------------*/
-              CONFIGURE : function configure (params) {
-                if (!params) {
-                  debugger;
-                  // @TODO: think about 'singleton' and 'dropin' here
-                  // @TODO: The component is already initialized on the server
-                  //        CONFIGURE should do nothing and START() should be executed
-                } else {
-                  delete api.CONFIGURE;
-                  STATE.params = params;
-                  /*-------------------------------------------------------------
-                    CUSTOMIZE - module interface, internals & CONFIGURATION
-                  -------------------------------------------------------------*/
-                  // just CONFIGURE something
-                  // or set other api.attributes
-                  // or return something
-                  // or set some global stuff
-                  return api;
-                }
-              }
-            }
-          ;
-          api.id = ENTITIES.push(api);
-          /*-------------------------------------------------------------------
-            PUBLIC API EXPORT
-
-              @JOB: make INIT/CONFIGURE and START one method with many params
-              @JOB: make module CONFIGURE a constructor option
-
-          -------------------------------------------------------------------*/
-          // [Optional] CONFIGURE this module immediately
-          api.CONFIGURE({}); // provide optional settings argument
-          return ENTITIES[api.id-1];
-        })({})
-      ;
-      MODULE.CONTRACT = CONTRACT;
-      return MODULE;
+if ($args === '--create') {
+  // @TODO: install git cross-platform
+  shell.exec('echo REQUIREMENTS:')
+  shell.exec('echo ---------------')
+  var x = shell.exec('git --version')
+  shell.exec('echo ---------------')
+  if (x.code === 127 ) {
+    console.log('=> please install "git"')
+  } else {
+    var $name = process.argv[3]
+    if (!$name) {
+      shell.exec('echo HELP:')
+      shell.exec('echo ---------------')
+      console.log('# please provide a name')
+      console.log('$ holon --create <name>')
+    } else {
+      shell.exec('echo CREATE PROJECT:')
+      shell.exec('echo ---------------')
+      json2fs($name, _starter($name),function (error) {
+        if (error) console.error(error)
+        console.log('@TODO: cd into project')
+        console.log('@TODO: make first git commit')
+        console.log('@TODO: educate about what has been created and done by printing README.md')
+      })
     }
-    MODULENAME_API.CONTRACT = CONTRACT;
-    return MODULENAME_API;
-  })(
-  /*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-    MODULE CONTEXT
-  :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
-    /*-------------------------------------------------------------------------
-      CONTRACT
+  }
+} else if ($args === '--configure') {
+  // shell.exec('echo CONFIGURE HOLON:')
+  // shell.exec('echo ----------------')
+  // console.log('@TODO: open holon/source/')
+  // console.log('@TODO: explain how to "customize" holon')
+  // console.log('@TODO: explain how to "save" customizations in a fork')
+  // console.log('@THINK: ... "npmgenerate?" ... ')
 
-      @JOB - http://www.2ality.com/2012/10/javascript-properties.html
-        (use to create the stuff below)
+} else if ($args === '--add-android') {
+  console.log('@TODO: check if in a holon project')
+  console.log('@TODO: check & install java,ant,... (locally)')
+  // https://gist.github.com/P7h/9741922
+  console.log('@TODO: (re-) add android platform')
 
-    -------------------------------------------------------------------------*/
-    {
-      NAME      : require('../package.json').name,
-      VERSION   : 'v' + require('../package.json').version,
-      VALIDATE  : function VALIDATE (params) {
-        // require('./CONTRACT.js')(params);
-        return true;
-      }
-      // generateData  : generateData,
-      // SCHEMA        : SCHEMA,
-      // getTypes      : getTypes,
-      // getValidators : getValidators,
-      // getSamples    : getSamples
-    },
-    /*-------------------------------------------------------------------------
-      SET OF MODULE INSTANCES - only 1 if singleton
+} else if ($args === '--recreate') {
 
-      @JOB: singleton vs factory
+  shell.exec('echo RECREATE PROJECT:')
+  shell.exec('echo -----------------')
+  /*
+    install all dependencies again
+    (see package.json)
+  */
+  // shell.exec('rm -rf node_modules')
+  // shell.exec('npm install')
+  /*
+    install all targets again
+    (see package.json)
+  */
+  // shell.exec('rm -rf target')
+  // shell.exec('mkdir target')
+  /*
+    build gh-page again
+  */
+  // shell.exec('rm -rf public')
+  // shell.exec('mkdir public')
+  /*
+    build all targets again
+  */
+  // shell.exec('mkdir build')
+  // shell.exec('npm run build')
 
-    -------------------------------------------------------------------------*/
-    [],
-    /*-------------------------------------------------------------------------
-      DEPENDENCY TREE
+} else if ($args === '--update') {
 
-        @JOB - http://www.2ality.com/2012/10/javascript-properties.html
-          (use to create the stuff below)
+  shell.exec('echo UPDATE PROJECT:')
+  shell.exec('echo ---------------')
+  console.log('@TODO: check for updates')
 
-    -------------------------------------------------------------------------*/
-    (function DEPENDENCIES () {
-      'use strict';
-      return {
-        /*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-          EXTERNAL DEPENDENCIES                                  (others legos)
-        :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
-        plates : require('plates'),
-        /*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-          INTERNAL DEPENDENCIES                                      (my legos)
-        :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
-          // none
-        /*---------------------------------------------------------------------
-          e.g. INTERNAL MODULE - nameOfInternalModule1
-          (copy structure of this file)
-        ---------------------------------------------------------------------*/
-      };
-    })()
-  )
-  /*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
-);
-/*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+} else {
+  shell.exec('echo AVAILABLE COMMANDS:')
+  shell.exec('echo -------------------')
+  console.log('  --help')
+  // console.log('  --configure')
+  console.log(    '-------------------')
+  console.log('  --create')
+  console.log('  --recreate')
+  console.log('  --add-android')
+  // console.log('  --update')
+}

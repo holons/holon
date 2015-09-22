@@ -11,7 +11,7 @@ table of content
 * [license](#license)
 
 
-
+**This is WORK IN PROGRESS, do not use**
 
 holon
 =====
@@ -59,11 +59,7 @@ install with [npm](http://npmjs.org) do:
 ```
 npm install holon
 ```
-install with [bower](http://bower.io) do:
 
-```
-bower install holon
-```
 install with [git](http://git-scm.com/) do:
 
 ```
@@ -131,8 +127,7 @@ contribute
 
 ### START PREPARING HOLON PROJECT
 * `git clone https://github.com/coding-amigos/holon.git`
-* `npm install -g bower bower-installer stylus nib jeet rupture`
-* `npm install && bower install`
+* `npm install`
 * `npm update`
 * `stylus -u jeet -u nib -rupture -w holon.styl`
 * load main HTML project file by opening and pointing your browser to:
@@ -160,7 +155,7 @@ repository
   * Contains all internal dependencies used by this component, but not yet published to their own repositories
 4. __`./RELEASE`__
   * Contains production ready versions of this component which are used by examples in `./DEMO`
-  * __CDNs/REGISTRYs:__ `v0.0.3@git`, `v0.0.2@npm`, `v0.0.2@bower`
+  * __CDNs/REGISTRYs:__ `v0.0.3@git`, `v0.0.2@npm`
 5. __`./SOURCE`__
   * Contains all the source files for this component
 6. __`./SOURCE/media`__

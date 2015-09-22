@@ -1,11 +1,21 @@
 {
   "name": "holon",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Leight-weight DSL-free dual-side composable reactive components",
   "main": "SOURCE/index.js",
-  "homepage": "https://github.com/coding-amigos/holon",
+  "bin": {
+    "holon": "SOURCE/index.js"
+  },
+  "homepage": "https://github.com/holons/holon",
   "keywords": [
     "dual-side",
+    "isomorphic",
+    "universal",
+    "generator",
+    "generate",
+    "browserify",
+    "electron",
+    "cordova",
     "composable",
     "reactive",
     "component",
@@ -19,6 +29,7 @@
     "partials"
   ],
   "author": [
+    "@TODO: replace with contributors + contribution rate",
     "serapath <dev@serapath.de> (http://www.github.com/serapath)"
   ],
   "scripts": {
@@ -33,38 +44,7 @@
     "spec": "npm run test",
     "uglify": "#https://github.com/hughsk/uglifyify",
     "stuff": "#echo v$(cat package.json | grep version | grep -Po '(?<=version\": \").*(?=\")'), npm run serve, npm run spec",
-
-    "start": "node_modules/atomify/bin/atomify.js"
-  },
-  "atomify": {
-    "server": {
-      "port": 1337,
-      "open": true,
-      "url": "http://localhost:1337/",
-      "lr": {
-        "verbose": true,
-        "quiet": false,
-        "patterns": [],
-        "port": 31337,
-        "sync": true
-      },
-      "st": {
-        "path": "./",
-        "cache": false,
-        "index": "index.html",
-        "dot": false,
-        "passthrough": false,
-        "gzip": true
-      }
-    },
-    "js": {
-      "entry": "SOURCE/index.js",
-      "alias": "RELEASE/LIBRARY.bundle.js",
-      "output": "RELEASE/LIBRARY.bundle.js",
-      "debug": true,
-      "transforms": [],
-      "standalone": "LIBRARY"
-    }
+    "start": "echo @TODO"
   },
   "engines": {
     "node": ">= 0.10.25"
@@ -76,17 +56,21 @@
   "bugs": {
     "url": "https://github.com/coding-amigos/holon/issues"
   },
-  "licenses": [{
-    "type": "CC0",
-    "url": "http://creativecommons.org/publicdomain/zero/1.0/"
-  }],
+  "licenses": [
+    {
+      "type": "CC0",
+      "url": "http://creativecommons.org/publicdomain/zero/1.0/"
+    }
+  ],
   "license": "CC0",
   "dependencies": {
-    "plates": "git://github.com/coding-amigos/plates#v0.4.12"
+    "getval": "^1.0.0",
+    "mkdirp": "^0.5.1",
+    "rimraf": "^2.4.3",
+    "shelljs": "^0.5.3",
+    "strip-indent": "^1.0.1",
+    "touch": "^1.0.0",
+    "traverse": "^0.6.6"
   },
-  "devDependencies": {
-    "atomify": "^3.2.0"
-  },
-  "optionalDependencies": {},
-  "peerDependencies": {}
+  "devDependencies": {}
 }
